@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>事件触发</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btn1" type="button" value="第1个按钮">
+    <input id="btn2" type="button" value="第2个按钮">
+    <script>
+        $('#btn1').click(function() {
+            $(this).css('backgroundColor', 'red');
+        });
+        $('#btn2').click(function() {
+            $('#btn1').click();
+        });
+    </script>
+  </body>
+</html>

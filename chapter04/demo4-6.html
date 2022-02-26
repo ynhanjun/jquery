@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>事件触发</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btn1" type="button" value="触发事件1">
+    <input id="btn2" type="button" value="触发事件2">
+    <input id="txt" type="text">
+    <span id="sp"></span>
+    <script>
+        $('#txt').focus(function() {
+            $('#sp').text('输入框获取到焦点了');
+        });
+        $('#btn1').click(function() {
+            // 触发输入框的获取焦点的事件
+            $('#txt').trigger('focus');
+        });
+        $('#btn2').click(function() {
+            $('#txt').triggerHandler('focus');
+        });
+    </script>
+  </body>
+</html>

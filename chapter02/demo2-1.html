@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>基本选择器</title>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div id="byId">第1个div元素，id值为byDiv</div>
+    <p>第1个p元素</p>
+    <p class="byClass">第2个p元素，类名为byClass</p>
+    <div class="byClass">第2个div元素，类名为byClass</div>
+    <script>
+        // id选择器
+        $('#byId').css('background', 'pink');
+        // 类选择器
+        $('.byClass').css('background', '#a0edbc');
+        // 元素选择器
+        $('p').css('font-size', '10px');
+        // 通配符选择器
+        $('*').css('background', 'yellow');
+        $('.byClass,#byId').css('background', 'yellow');
+    </script>
+  </body>
+</html>

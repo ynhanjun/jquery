@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>使用one()方法绑定单次事件</title>
+    <style>
+        div {
+            width: 100px;
+            height:100px;
+            background: #ccc
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div></div>
+    <script>
+        $('div').one('click', function() {
+            alert('1次单击就失效');
+        });
+    </script>
+  </body>
+</html>

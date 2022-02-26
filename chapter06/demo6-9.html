@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ajaxStart和ajaxStop全局事件</title>
+    <style>
+        fieldset {
+            width: 185px;
+            border: 1px solid #aaa;
+            padding: 10px 20px 10px 10px;
+        }
+        fieldset input {
+            width: 180px;
+        }
+        button {
+            margin: 20px 0;
+        }
+        table {
+            min-width: 217px;
+            border: 1px solid #aaa;
+            border-collapse: collapse;
+        }
+        table td {
+            padding: 5px;
+        }
+        table td:nth-child(1) {
+            width: 90px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        用户名：<br><input id="username" type="text" ><br>
+        密码：<br><input id="password" type="text"><br>
+      </fieldset>
+    </form>
+    <button id="btn">提交数据</button>
+    <table border="1" cellpadding="0" cellspacing="0" style="">
+      <tr>
+        <td>状态：</td>
+        <td id="status"></td>
+      </tr>
+      <tr>
+        <td>返回数据：</td>
+        <td id="data"></td>
+      </tr>
+    </table>
+    <script>
+        $('#btn').click(function() {
+            var userData = {
+                username: $('#username').val(),
+                password: $('#password').val()
+            };
+            $.post('register.php', userData, function(data) {
+                $('#data').html(data);
+            });
+        });
+        $(document).ajaxStart(function() {
+            $('#status').html('数据提交中');
+        });
+        $(document).ajaxStop(function() {
+            alert('测试');    // 弹出警告框时会暂停脚本，此时可观察状态文本
+            $('#status').html('数据已提交');
+        });
+    </script>
+  </body>
+</html>

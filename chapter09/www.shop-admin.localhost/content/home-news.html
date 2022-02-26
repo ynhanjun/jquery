@@ -1,0 +1,185 @@
+<table id="news_list" title="最新动态"></table>
+<div id="news_edit_window" data-options="closed:true,width:'440px',height:'260px',modal:true,maximizable:false,iconCls:'icon-save'" style="display:none">
+  <form method="post" style="margin:10px">
+    <table cellpadding="5">
+      <tr>
+        <td>动态标题：</td>
+        <td><input name="title" data-options="required:true,validType:'length[0,80]',width:'280px'"></td>
+      </tr>
+      <tr>
+        <td>链接地址：</td>
+        <td><input name="url" data-options="required:true,width:'280px'"></td>
+      </tr>
+      <tr>
+        <td>标题颜色：</td>
+        <td><input name="color" data-options="width:'140px'"></td>
+      </tr>
+      <tr>
+        <td>排序值：</td>
+        <td><input name="sort" data-options="required:true,min:-99999,max:99999,precision:0,width:'140px'"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="padding-top:15px;">
+          <input type="hidden" name="status" value="1">
+          <a class="easyui-linkbutton news-edit-save" data-options="width:'80px',height:'30px'" href="#">保存草稿</a>
+          <a class="easyui-linkbutton news-edit-submit" data-options="width:'90px',height:'30px'" href="#">保存并上架</a>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<script src="js/jquery.color.js"></script>
+<script>
+  (function () {
+    var list = $('#news_list');
+    var editingId = 0;
+    list.datagrid({
+      collapsible: true,
+      fit: true,
+      url: Config.api + 'news',
+      method: 'GET',
+      columns: [[
+        {field: 'checkbox', checkbox: true},
+        {title: '动态标题', field: 'title', width: 200},
+        {title: '标题颜色', field: 'color', width: 100},
+        {title: '排序', field: 'sort', align: 'right', width: 50},
+        {title: '状态', field: 'status', width: 60, align: 'center', formatter: formatStatus},
+        {title: '创建日期', field: 'created', width: 130, align: 'center'},
+        {title: '更新日期', field: 'updated', width: 130, align: 'center'}
+      ]],
+      toolbar: [
+        {text: '刷新', iconCls: 'icon-reload', handler: reload}, '-',
+        {text: '新增', iconCls: 'icon-add', handler: add},
+        {text: '编辑', iconCls: 'icon-edit', handler: edit}, 
+        {text: '删除', iconCls: 'icon-cancel', handler: del}, '-', 
+        {text: '上架', iconCls: 'icon-ok', handler: function() { status(1); }},
+        {text: '下架', iconCls: 'icon-no', handler: function() { status(2); }}
+      ],
+      loadFilter: Config.xssFilter
+    });
+    function reload() {
+      list.datagrid('reload');
+    }
+    function add() {
+      editingId = 0;
+      newsEdit();
+    }
+    function edit() {
+      var node = list.treegrid('getSelected');
+      if (!node) {
+        $.messager.alert('操作失败', '请先在列表中选择一项。');
+        return;
+      }
+      if (list.datagrid('getSelections').length > 1) {
+         $.messager.alert('操作失败', '只能选择一项进行编辑。');
+         return;
+      }
+      editingId = node.id;
+      newsEdit();
+    }
+    function del() {
+      var ids = getSelectionsIds();
+      if (ids.length === 0) {
+        $.messager.alert('操作失败', '未选中记录！');
+        return;
+      }
+      $.messager.confirm('确认', '确定删除选中的 ' + ids.length + ' 条记录吗？', function (r) {
+        if (r) {
+          var url = Config.api + 'news?ids=' + ids.join(',');
+          $.ajax({type: 'DELETE', url: url, success: function() {
+            $.messager.alert('提示', '删除成功！', undefined, reload);
+          }});
+        }
+      });
+    }
+    function status(val) {
+      var ids = getSelectionsIds();
+      if (ids.length === 0) {
+        $.messager.alert('操作失败', '未选中记录！');
+        return;
+      }
+      var str = {1: '上架', 2: '下架'}[val];
+      $.messager.confirm('确认操作', '确定' + str + '选中的 ' + ids.length +  ' 条记录吗？', function (r) {
+        if (r) {
+          $.ajax({
+            type: 'PATCH',
+            url: Config.api + 'news?ids=' + ids.join(','),
+            data: {status: val},
+            success: function () {
+              $.messager.alert('提示', str + '成功！', undefined, reload);
+            }
+          });
+        }
+      });
+    }
+    function formatStatus(val) {
+      return {1: '正常', 2: '下架'}[val];
+    }
+    function getSelectionsIds() {
+      var sels = list.datagrid('getSelections');
+      var ids = [];
+      for (var i in sels) {
+        ids.push(sels[i].id);
+      }
+      return ids;
+    }
+    var editDiv = $('#news_edit_window');
+    function newsEdit() {
+      var title, color, sort, url, editDivClone = editDiv.clone();
+      title = editDiv.find('[name=title]').textbox();
+      color = editDiv.find('[name=color]').color();
+      sort = editDiv.find('[name=sort]').numberbox();
+      url = editDiv.find('[name=url]').textbox();
+      editDiv.find('.news-edit-save').click(function() {
+        editDiv.find('[name=status]').val(2);
+        submit();
+      });
+      editDiv.find('.news-edit-submit').click(function() {
+        editDiv.find('[name=status]').val(1);
+        submit();
+      });
+      function reset() {
+        $(this).window('destroy');
+        list.after(editDivClone);
+        editDiv = editDivClone;
+        editDivClone = editDivClone.clone();
+      }
+      if (editingId === 0) {
+        title.textbox('setValue', '');
+        sort.numberbox('setValue', '');
+        url.textbox('setValue', '');
+        color.color('setValue', '').textbox('setValue', '');
+        editDiv.window({title: '新增动态', onClose: reset}).window('open');
+      } else {
+        $.get(Config.api + 'news/' + editingId, function(data) {
+          title.textbox('setValue', data.title);
+          sort.numberbox('setValue', data.sort);
+          url.textbox('setValue', data.url);
+          color.color('setValue', data.color);
+          if (data.color === '') {
+            color.textbox('setValue', '');
+          }
+          editDiv.window({title: '编辑动态', onClose: reset}).window('open');
+        });
+      }
+    }
+    function submit() {
+      function success() {
+        reload();
+        editDiv.window('close');
+      }
+      var form = editDiv.find('form');
+      if (!form.form('validate')) {
+        $.messager.alert('操作失败', '表单还未填写完成！');
+        return;
+      }
+      var id = editingId;
+      if (id === 0) {
+        $.post(Config.api + 'news', form.serialize(), success);
+      } else {
+        $.ajax({type: 'PUT', url: Config.api + 'news/' + id, data: form.serialize(), success: success});
+      }
+    }
+  })();
+</script>

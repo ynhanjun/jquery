@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>属性过滤选择器</title>
+    <style>
+        div {
+            width: 200px;
+            margin: 5px;
+            border: solid 1px black;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div class="dv">class=dv</div>
+    <div title="标题">title=标题</div>
+    <div class="dv1" title="标题1">class=dv1 title=标题1</div>
+    <div class="dv1" title="标题2">class=dv1 title=标题2</div>
+    <script>
+        $('[class^=d]').css('background', 'yellow');
+        $('[class=dv1][title*=2]').css('background', 'yellow');
+    </script>
+  </body>
+</html>

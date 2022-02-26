@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>条件判断</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="template-web.js"></script>
+  </head>
+  <body>
+    <div id="show"></div>
+    <script id="test" type="text/html">
+      {{each num v}}
+        {{if v%2 == 0}}
+          偶数为：{{v}} <br>
+        {{/if}}
+      {{/each}}
+    </script>
+    <script>
+        var con = template('test', {num: [2, 9, 8, 7, 1]});
+        $('#show').html(con);
+    </script>
+  </body>
+</html>

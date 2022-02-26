@@ -1,0 +1,144 @@
+.webuploader-container {
+    position: relative;
+}
+.webuploader-element-invisible {
+    position: absolute !important;
+    clip: rect(1px,1px,1px,1px);
+}
+.webuploader-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #444;
+    background: #fafafa;
+    border: 1px solid #bbb;
+    background: linear-gradient(to bottom,#ffffff 0,#eeeeee 100%);
+    background-repeat: repeat-x;
+    border-radius: 5px;
+    padding: 6px 10px;
+    text-align: center;
+    overflow: hidden;
+}
+.webuploader-pick-hover {
+    background: #eaf2ff; 
+    color: #000000; 
+    border: 1px solid #b7d2ff; 
+}
+.webuploader-pick-disable {
+    opacity: 0.6;
+    pointer-events:none;
+}
+.webuploader-list {
+    width: 700px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.webuploader-thumbnail {
+    width: 110px;
+    height: 110px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.075);
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+.webuploader-thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+.webuploader-file-item {
+    float: left;
+    position: relative;
+    margin: 0 20px 20px 0;
+    padding: 4px;
+}
+.webuploader-tip {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    color: #666;
+}
+.webuploader-file-item .webuploader-info {
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    right: 4px;
+    height: 20px;
+    line-height: 20px;
+    text-indent: 5px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    z-index: 10;
+}
+.webuploader-file-item .webuploader-error {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    background: red;
+    color: white;
+    text-align: center;
+    height: 20px;
+    font-size: 14px;
+    line-height: 23px;
+}
+.webuploader-file-item .webuploader-done {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    background: #4cae4c;
+    color: white;
+    text-align: center;
+    height: 20px;
+    font-size: 14px;
+    line-height: 23px;
+}
+.webuploader-file-item .webuploader-progress {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    left: 4px;
+    height: 4px;
+    overflow: hidden;
+    z-index: 15;
+    margin:0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+}
+.webuploader-file-item .webuploader-progress span {
+    display: block;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    background: #4cae4c url(progress.png) repeat-x;
+    transition: width 200ms linear;
+    animation: progressmove 2s linear infinite;
+}
+.webuploader-opt{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(255,255,255,0.8);
+    width: 45px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+}
+.webuploader-del{
+    color: #23A8E0;
+    text-shadow: 1px 1px 3px rgba(255,255,255,.9);
+    cursor: pointer;
+}
+.webuploader-del:hover{
+    color:#EB1C27;
+}

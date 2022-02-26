@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>编写jQuery代码创建组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div id="demo" style="width: 400px; height: 300px;">此处显示会话内容！</div>
+    <script>
+        $('#demo').dialog({
+            iconCls: 'icon-ok',
+            collapsible: true,
+            onClose: function() {}
+        });
+        $('#demo').dialog('setTitle', '我的对话框');
+    </script>
+  </body>
+</html>

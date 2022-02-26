@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>元素的显示和隐藏</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btnHide" type="button" value="隐藏图形">
+    <input id="btnShow" type="button" value="显示图形">
+    <input id="btnToggle" type="button" value="切换显示隐藏效果"><br>
+    <div style="width: 100px; height: 100px; background: #edbc80;"></div>
+    <script>
+        // 隐藏图形
+        $('#btnHide').click(function() {
+            $('div').hide();
+        });
+        // 显示图形
+        $('#btnShow').click(function() {
+            $('div').show(1000, function() {
+                $('div').css('border-radius', '50%');
+            });
+        });
+        // 切换显示隐藏效果
+        $('#btnToggle').click(function() {
+            $('div').toggle('slow', 'linear');
+        });
+    </script>
+  </body>
+</html>

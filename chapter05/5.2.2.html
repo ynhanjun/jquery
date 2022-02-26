@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>加入表达式的动画</title>
+    <style>
+       div {
+           width: 160px;
+           height: 50px;
+           background: #ccc;
+       }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="按钮"><br><br>
+    <div></div>
+    <script>
+        $('input').click(function() {
+            $('div').animate({
+                height: '+=100px',
+                width: '-=100px'
+            });
+        });
+    </script>
+  </body>
+</html>

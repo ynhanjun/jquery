@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>datagrid组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <table class="easyui-datagrid" title="订货单" style="width:500px;" data-options="rownumbers:true,fitColumns:true,collapsible:true,toolbar:'#tb'">
+      <thead>
+        <tr>
+          <th data-options="field:'id'">编号</th>
+          <th data-options="field:'name',width:150">名称</th>
+          <th data-options="field:'price',width:80">价格</th>
+          <th data-options="field:'amount',align:'right',styler:highlight">数量</th>
+          <th data-options="field:'note',width:240">备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>17001</td><td>书籍</td><td>8</td><td>50</td><td>促销</td></tr>
+        <tr><td>17002</td><td>工具</td><td>7</td><td>10</td><td>半价</td></tr>
+        <tr><td>17003</td><td>台历</td><td>9</td><td>100</td><td>新品</td></tr>
+      </tbody>
+    </table>
+    <div id="tb" style="padding:5px;height:auto">
+      <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"></a>
+      <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true"></a>
+      <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true"></a>
+      <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cut',plain:true"></a>
+      <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true"></a>
+    </div>
+    <script>
+        function highlight(value, row, index) {
+            if (value < 30) {
+                return 'background-color:#ffee00;color:red;';
+            }
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>extend()方法的使用</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <script>
+        (function($) {
+            var defaults = {可选参数1: '默认值1', 可选参数2: '默认值2'};
+            $.插件名 = function(options) {
+                options = $.extend({}, defaults, options);
+            };
+            $.插件名.defaults = defaults;    // 允许插件的使用者查看或更改可选参数
+        })(jQuery);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<div class="slide">
+  <ul></ul>
+  <script id="slide_tpl" type="text/html">
+    {{each item v}}
+    <li><a href="{{v.url}}"><img src="{{v.pic}}" alt="{{v.title}}"></a></li>
+    {{/each}}
+  </script>
+  <div class="slide-nav"></div>
+  <script src="js/jquery.slide.js"></script>
+</div>
+<div class="news">
+  <div class="news-title">最新动态</div>
+  <ul class="news-content"></ul>
+  <script id="news_tpl" type="text/html">
+    {{each item v}}
+    <li><a style="{{if v.color !== ''}}color:{{v.color}}{{/if}}" href="{{v.url}}" target="_blank">{{v.title}}</a></li>
+    {{/each}}
+  </script>
+</div>
+<div class="clear"></div>
+<div class="best">
+  <div class="best-title">精品推荐</div>
+  <div class="best-content"></div>
+  <script id="best_tpl" type="text/html">
+    {{each item v}}
+    <ul class="item">
+      <li><a href="item-{{v.id}}.html" target="_blank"><img src="{{v.pic}}" alt="{{v.title}}"></a></li>
+      <li class="goods"><a href="item-{{v.id}}.html" target="_blank">{{v.title}}</a></li>
+      <li class="price">￥{{v.price}}</li>
+    </ul>
+    {{/each}}
+  </script>
+</div>
+<script>
+  $.get(Config.api + 'slides', function(data) {
+    Common.slidePath(data);
+    $('.slide ul').html(template('slide_tpl', {item: data}));
+    $('.slide').slide();
+  });
+  $.get(Config.api + 'news', function(data) {
+    $('.news-content').html(template('news_tpl', {item: data}));
+  });
+  $.get(Config.api + 'goods?count=6', function(data) {
+    Common.itemPicPath(data);
+    $('.best-content').html(template('best_tpl', {item: data}));
+  });
+</script>

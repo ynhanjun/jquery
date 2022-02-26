@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>折叠特效</title>
+    <style>
+        #toggle {
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+        }
+    </style>
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div id="toggle">折叠</div>
+    <script>
+        $(document).click(function() {
+            $('#toggle').effect('fold');
+        });
+        $('#toggle').effect('fold', {size: 20, horizFirst: true}, 2000, function() {
+            alert('折叠特效已完成');
+        });
+        $('#toggle').effect({
+            effect: 'fold',             // 指定是哪种特效
+            size: 50,                   // 指定折叠特效元素的大小
+            horizFirst: true,           // 先垂直折叠
+            duration: 2000,             // 动画特效持续时间为2秒
+            complete: function() {     // 动画特效完成后指定的函数
+                alert('折叠特效已完成');
+            }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>删除节点</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn1">删除段落</button>
+    <button id="btn2">恢复段落</button>
+    <p>今天天气不错!</p>
+    <script>
+        var $p;
+        $('#btn1').click(function() {
+            $p = $('p').detach();
+        });
+        $('#btn2').click(function() {
+            $($p).appendTo('body');
+        });
+    </script>
+  </body>
+</html>

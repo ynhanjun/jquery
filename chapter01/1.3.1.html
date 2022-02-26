@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+  </head>
+  <body>
+    <h1>标题</h1>
+    <ul>
+      <li>
+        <a href="#">链接</a>
+      <li>
+    </ul>
+    <script>
+        // 获取li标签对象集合：HTMLCollection(2) [li, li]
+        var lis = document.getElementsByTagName('li'); 
+        var firstLi = lis[0];            // 获取第1个li标签的DOM对象
+        var text = firstLi.innerText;    // 获取第1个li标签的文本内容
+        console.log(firstLi);
+        console.log(text);
+    </script>
+  </body>
+</html>

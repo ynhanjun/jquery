@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Resizable组件</title>
+    <style>
+        #demo {
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+        }
+    </style>
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div id="demo">来，调整div的大小</div>
+    <script>
+        // 为ID为demo的元素设置调整大小的组件
+        $('#demo').resizable();
+        // 获取调整大小的选项
+        console.log($('#demo').resizable('option'));                     // 所有选项
+        console.log($('#demo').resizable('option', 'animate'));          // 一个选项
+        // 设置调整大小的选项
+        $('#demo').resizable('option', {maxWidth: 500, animate: true});  // 一组选项
+        $('#demo').resizable('option', 'disabled', true);                // 一个选项
+    </script>
+  </body>
+</html>

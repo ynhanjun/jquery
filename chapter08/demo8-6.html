@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>layout组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div class="easyui-layout" style="width:600px;height:400px;">
+      <div data-options="region:'north',title:'North Title',split:true" style="height:100px;"></div>
+      <div data-options="region:'south',title:'South Title',split:true" style="height:100px;"></div>
+      <div data-options="region:'east',title:'East',split:true" style="width:100px;"></div>
+      <div data-options="region:'west',title:'West',split:true" style="width:100px;"></div>
+      <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;"></div>
+    </div>
+  </body>
+</html>

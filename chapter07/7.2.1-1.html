@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>封装jQuery对象方法的插件</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div></div>
+    <script>
+        $.fn.test = function() {
+            return this === obj;
+        };
+        var obj = $('div');
+        console.log(obj.test());    // 输出结果：true
+    </script>
+  </body>
+</html>

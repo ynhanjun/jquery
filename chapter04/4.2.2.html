@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>事件解绑</title>
+    <style>
+        div {
+            width: 100px;
+            height:100px;
+            background: #ccc
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li>北京</li>
+      <li>上海</li>
+      <li>广东</li>
+    </ul>
+    <script>
+        // li元素将click事件委托给父元素ul监听
+        $('ul').on('click', 'li', function() {
+            console.log('哈哈');
+        });
+        // ul元素添加mouseenter事件
+        $('ul').on('mouseenter', function() {
+            $(this).css('background', 'lightblue');
+        });
+        // 解绑ul元素上被委托的click事件
+        $('ul').off('click', '**');
+    </script>
+  </body>
+</html>

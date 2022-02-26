@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>基本过滤选择器</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <ul style="width:200px">
+      <li>春天摇身一变</li>
+      <li>成为了有秘密的人</li>
+      <li>枯萎是花瓣的秘密</li>
+      <li>凋零是叶子的秘密</li>
+    </ul>
+    <script>
+        // 索引值为偶数的li
+        $('li:even').css('backgroundColor', 'pink');
+        // 索引值为奇数的li
+        $('li:odd').css('border', 'solid 1px black');
+    </script>
+  </body>
+</html>

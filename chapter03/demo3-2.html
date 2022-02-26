@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>css()方法设置多个属性</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btn" type="button" value="设置样式">
+    <div></div>
+    <script>
+        $('#btn').click(function() {
+            // backgroundColor 可写为 'background-color'
+            // 'border-radius' 可写为 borderRadius
+            $('div').css({backgroundColor: 'pink', width: '150px', height: '150px', 'border-radius': '50%'});
+        });
+    </script>
+  </body>
+</html>

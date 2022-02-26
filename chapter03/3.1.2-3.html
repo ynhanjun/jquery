@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>在操作元素类的方法中使用函数</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>test</div>
+    <script>
+        $('div').click(function() {
+            if ($(this).hasClass('c')) {
+                $(this).removeClass('c');
+            } else {
+                $(this).addClass('c');
+            }
+        });
+    </script>
+  </body>
+</html>

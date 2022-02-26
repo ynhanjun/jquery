@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>css()方法获取多个属性</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div style="color:aquamarine;font-size:50px;font-family:'楷体'">
+        越努力 越幸运
+    </div>
+    <script>
+        // 获取多个属性的值
+        var obj = $('div').css(['color', 'font-size', 'font-family']);
+        // 在控制台查看obj
+        console.log(obj);
+    </script>
+  </body>
+</html>

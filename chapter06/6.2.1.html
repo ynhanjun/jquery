@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>load获取文档内容</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <img src="../chapter04/star/img/star.gif" alt=""><br>
+    <button id="btn">加载数据</button>
+    <div id="box"></div>
+    <script>
+        // 事件方法load()
+        $('img').load(function() {
+            alert('图片已载入');
+        });
+        // Ajax方法load()
+        $('button').click(function() {
+            $('#box').load('demo.html');
+        });
+    </script>
+  </body>
+</html>

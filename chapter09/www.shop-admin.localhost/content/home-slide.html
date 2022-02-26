@@ -1,0 +1,285 @@
+<table id="slide_list" title="焦点图"></table>
+<div id="slide_edit_window" data-options="closed:true,width:'440px',height:'380px',modal:true,maximizable:false,iconCls:'icon-save'" style="display:none">
+  <form method="post" style="margin:10px">
+    <table cellpadding="5">
+      <tr>
+        <td>图片名称：</td>
+        <td><input name="title" data-options="required:true,validType:'length[0,80]',width:'280px'"></td>
+      </tr>
+      <tr>
+        <td>链接地址：</td>
+        <td><input name="url" data-options="required:true,width:'280px'"></td>
+      </tr>
+      <tr>
+        <td>排序值：</td>
+        <td><input name="sort" data-options="required:true,min:-99999,max:99999,precision:0,width:'140px'"></td>
+      </tr>
+      <tr>
+        <td>上传图片：</td>
+        <td>
+          <div class="upload_pic">
+            <div class="webuploader-list" style="width:280px;"></div>
+            <div class="webuploader-file-picker">选择图片</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="padding-top:15px;">
+          <input type="hidden" name="status" value="1">
+          <a class="easyui-linkbutton slide-edit-save" data-options="width:'80px',height:'30px'" href="#">保存草稿</a>
+          <a class="easyui-linkbutton slide-edit-submit" data-options="width:'90px',height:'30px'" href="#">保存并上架</a>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<script>
+  (function () {
+    var list = $('#slide_list');
+    var editingId = 0;
+    list.datagrid({
+      collapsible: true,
+      fit: true,
+      url: Config.api + 'slides',
+      method: 'GET',
+      columns: [[
+        {field: 'checkbox', checkbox: true},
+        {title: '图片名称', field: 'title', width: 200},
+        {title: '排序', field: 'sort', align: 'right', width: 50},
+        {title: '状态', field: 'status', width: 60, align: 'center', formatter: formatStatus},
+        {title: '创建日期', field: 'created', width: 130, align: 'center'},
+        {title: '更新日期', field: 'updated', width: 130, align: 'center'}
+      ]],
+      toolbar: [
+        {text: '刷新', iconCls: 'icon-reload', handler: reload}, '-',
+        {text: '新增', iconCls: 'icon-add', handler: add},
+        {text: '编辑', iconCls: 'icon-edit', handler: edit}, 
+        {text: '删除', iconCls: 'icon-cancel', handler: del}, '-', 
+        {text: '上架', iconCls: 'icon-ok', handler: function() { status(1); }},
+        {text: '下架', iconCls: 'icon-no', handler: function() { status(2); }}
+      ],
+      loadFilter: Config.xssFilter
+    });
+    function reload() {
+      list.datagrid('reload');
+    }
+    function add() {
+      editingId = 0;
+      slideEdit();
+    }
+    function edit() {
+      var node = list.treegrid('getSelected');
+      if (!node) {
+        $.messager.alert('操作失败', '请先在列表中选择一项。');
+        return;
+      }
+      if (list.datagrid('getSelections').length > 1) {
+         $.messager.alert('操作失败', '只能选择一项进行编辑。');
+         return;
+      }
+      editingId = node.id;
+      slideEdit();
+    }
+    function del() {
+      var ids = getSelectionsIds();
+      if (ids.length === 0) {
+        $.messager.alert('操作失败', '未选中记录！');
+        return;
+      }
+      $.messager.confirm('确认', '确定删除选中的 ' + ids.length + ' 条记录吗？', function (r) {
+        if (r) {
+          var url = Config.api + 'slides?ids=' + ids.join(',');
+          $.ajax({type: 'DELETE', url: url, success: function() {
+            $.messager.alert('提示', '删除成功！', undefined, reload);
+          }});
+        }
+      });
+    }
+    function status(val) {
+      var ids = getSelectionsIds();
+      if (ids.length === 0) {
+        $.messager.alert('操作失败', '未选中记录！');
+        return;
+      }
+      var str = {1: '上架', 2: '下架'}[val];
+      $.messager.confirm('确认操作', '确定' + str + '选中的 ' + ids.length +  ' 条记录吗？', function (r) {
+        if (r) {
+          $.ajax({
+            type: 'PATCH',
+            url: Config.api + 'slides?ids=' + ids.join(','),
+            data: {status: val},
+            success: function () {
+              $.messager.alert('提示', str + '成功！', undefined, reload);
+            }
+          });
+        }
+      });
+    }
+    function formatStatus(val) {
+      return {1: '正常', 2: '下架'}[val];
+    }
+    function getSelectionsIds() {
+      var sels = list.datagrid('getSelections');
+      var ids = [];
+      for (var i in sels) {
+        ids.push(sels[i].id);
+      }
+      return ids;
+    }
+    var editDiv = $('#slide_edit_window');
+    var image = createImage();
+    function slideEdit() {
+      var title, sort, url, editDivClone = editDiv.clone();
+      title = editDiv.find('[name=title]').textbox();
+      sort = editDiv.find('[name=sort]').numberbox();
+      url = editDiv.find('[name=url]').textbox();
+      editDiv.find('.slide-edit-save').click(function() {
+        editDiv.find('[name=status]').val(2);
+        submit();
+      });
+      editDiv.find('.slide-edit-submit').click(function() {
+        editDiv.find('[name=status]').val(1);
+        submit();
+      });
+      function reset() {
+        $(this).window('destroy');
+        list.after(editDivClone);
+        editDiv = editDivClone;
+        editDivClone = editDivClone.clone();
+      }
+      if (editingId === 0) {
+        title.textbox('setValue', '');
+        sort.numberbox('setValue', '');
+        url.textbox('setValue', '');
+        image.create({pic: ''});
+        editDiv.window({title: '新增焦点图', onClose: reset}).window('open');
+      } else {
+        $.get(Config.api + 'slides/' + editingId, function(data) {
+          title.textbox('setValue', data.title);
+          sort.numberbox('setValue', data.sort);
+          url.textbox('setValue', data.url);
+          image.create({pic: data.pic});
+          editDiv.window({title: '编辑焦点图', onClose: reset}).window('open');
+        });
+      }
+    }
+    function submit() {
+      function success() {
+        reload();
+        editDiv.window('close');
+      }
+      var form = editDiv.find('form');
+      if (!form.form('validate')) {
+        $.messager.alert('操作失败', '表单还未填写完成！');
+        return;
+      }
+      if (editingId === 0) {
+        $.post(Config.api + 'slides', form.serialize(), success);
+      } else {
+        $.ajax({type: 'PUT', url: Config.api + 'slides/' + editingId, data: form.serialize(), success: success});
+      }
+    }
+    function createImage() {
+      var pic, url = Config.uploadURL;
+      return {
+        create: function(image) {
+          pic = imagesUploader(editDiv.find('.upload_pic'), 'hot', 1);
+          editDiv.find('.webuploader-file-item').remove();
+          if (image.pic !== '') {
+            var picList = editDiv.find('.upload_pic .webuploader-list');
+            var item = fileItem(false, false, url + image.pic);
+            picList.append(item);
+            fileControl(item, image.pic);
+          }
+        }
+      };
+      function updateId(relation_id) {
+        function replace(obj) {
+          obj.server = obj.server.replace('&relation_id=0', '&relation_id=' + editingId);
+        }
+        editingId = relation_id;
+        replace(pic.options);
+        reload();
+      }
+      function fileItem(fid, name, src) {
+        var item = $('<div class="webuploader-file-item webuploader-thumbnail" style="width:200px;height:72px;"><img></div>');
+        fid && item.attr('id', fid);
+        name && item.append('<div class="webuploader-info">' + name + '</div>');
+        src && item.find('img').attr('src', src);
+        return item;
+      }
+      function fileControl(obj, path) {
+         obj.append('<div class="webuploader-opt"><span class="webuploader-del">[删除]</span></div>');
+         obj.append('<input class="webuploader-url" type="hidden" value="' + path + '">');
+      }
+      function imagesUploader(obj, name, max) {
+        var picker_id = name + '_picker_slide';
+        obj.find('.webuploader-file-picker').attr('id', picker_id);
+        var url = Config.api + 'files?type=image&name=' + name + '&relation=slide&relation_id=' + editingId;
+        var uploader = WebUploader.create({auto: true, server: url, pick: '#' + picker_id, fileVal: name, duplicate: true, accept: {title: 'Images', extensions: 'gif,jpg,jpeg,bmp,png', mimeTypes: 'image/*'}});
+        obj.find('.webuploader-list').on('click', '.webuploader-del', function () {
+          $.messager.confirm('确认删除', '您确定要立即删除此图片？', function (r) {
+            if (r) {
+              $.ajax({
+                type: 'DELETE',
+                url: Config.api + 'files?relation=slide&relation_id=' + editingId,
+                data: {name: name, path: obj.find('.webuploader-url').val()},
+                success: function() {
+                  obj.find('.webuploader-file-item').remove();
+                }
+              });
+            }
+          });
+        });
+        uploader.on('uploadBeforeSend', function (obj, data, headers) {
+          headers.Authorization = Config.token;
+        });
+        uploader.on('beforeFileQueued', function () {
+          if (obj.find('.webuploader-url').length >= max) {
+            $.messager.alert('操作失败', '最多只能上传' + max + '张图片！');
+            return false;
+          }
+        });
+        uploader.on('fileQueued', function (file) {
+          var li = fileItem(file.id, file.name);
+          var img = li.find('img');
+          obj.find('.webuploader-list').append(li);
+          uploader.makeThumb(file, function (error, src) {
+            if (error) {
+              img.replaceWith('<span class="webuploader-tip">不能预览</span>');
+              return;
+            }
+            img.attr('src', src);
+          }, 100, 100);
+        });
+        uploader.on('uploadProgress', function (file, percentage) {
+          var li = $('#' + file.id);
+          var percent = li.find('.webuploader-progress span');
+          if (!percent.length) {
+            percent = $('<p class="webuploader-progress"><span></span></p>').appendTo(li).find('span');
+          }
+          percent.css('width', percentage * 100 + '%');
+        });
+        uploader.on('uploadSuccess', function (file, response) {
+          var li = $('#' + file.id);
+          if (!li.find('.webuploader-done').length) {
+            editingId === 0 && updateId(response.relation_id);
+            fileControl(li, response.path);
+          }
+        });
+        uploader.on('uploadError', function (file) {
+          var li = $('#' + file.id);
+          var error = li.find('div.webuploader-error');
+          if (!error.length) {
+            error = $('<div class="webuploader-error">上传失败</div>').appendTo(li);
+          }
+        });
+        uploader.on('uploadComplete', function (file) {
+          $('#' + file.id).find('.webuploader-progress').remove();
+        });
+        return uploader;
+      }
+    }
+  })();
+</script>

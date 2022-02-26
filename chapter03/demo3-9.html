@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>outerWidth()outerHeight()方法</title>
+    <style>
+        div {
+            background: green;
+            border: 3px solid #999;
+            width: 200px;
+            height: 100px;
+            overflow: auto;
+        }
+        p {
+            background: pink;
+            margin: 10px;
+            width: 1000px;
+            height: 1000px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="按钮">
+    <div><p>行动好过语言</p></div>
+    <script>
+        $('input').click(function() {
+            $('div').scrollTop(500);
+            $('div').scrollLeft(50);
+        });
+    </script>
+  </body>
+</html>

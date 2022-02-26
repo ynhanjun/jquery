@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jQuery对象与DOM对象的转换</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn">say hello</button>
+    <script>
+        // 获取DOM对象btn
+        var btn = document.getElementById('btn');
+        // 将DOM对象转换成jQuery对象
+        var btn1 = $(btn);
+        // 验证转换结果
+        alert(btn === btn1[0]);    // 输出结果：true
+    </script>
+  </body>
+</html>

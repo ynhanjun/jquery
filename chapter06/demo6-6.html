@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>数据格式</title>
+    <style>
+        button {
+            margin: 0 10px 10px 0;
+        }
+        th, td {
+            text-align: center;
+        }
+        table th:nth-child(1) {
+            width: 200px;
+        }
+        table th:nth-child(2) {
+            width: 100px;
+        }
+        table th:nth-child(3) {
+            width: 80px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn1">加载数据XML</button>
+    <button id="btn2">加载数据JSON</button>
+    <button id="btn3">加载数据TEXT</button>
+    <button id="btn4">$.getJSON()</button>
+    <table id="dataTable" border="1" cellpadding="0" cellspacing="0">
+      <tr>
+        <th>书名</th>
+        <th>作者</th>
+        <th>价格</th>
+      </tr>
+    </table>
+    <script>
+        $('#btn1').click(function() {
+            $.get('target.xml', function(data, status, xhr) {
+                console.log(data);
+                var html = '';
+                $(data).find('book').each(function(index, ele) {
+                    html += '<tr>';
+                    $(ele).children().each(function(index, ele) {
+                        html += '<td>' + $(ele).text() + '</td>';
+                    });
+                    html += '</tr>';
+                });
+                $('#dataTable').append(html);
+            }, 'xml');
+        });
+        $('#btn2').click(function() {
+            $.get('target.json', function(data) {
+                console.log(data);
+                append(data);
+            }, 'json');
+        });
+        $('#btn3').click(function() {
+            $.get('target.txt', function(data) {
+                console.log(data);
+                console.log(JSON.parse(data));
+                data = JSON.parse(data);
+                append(data);
+            }, 'text');
+        });
+        $('#btn4').click(function() {
+            $.getJSON('target.json', function(data, status, xhr) {
+                append(data);
+            });
+        });
+        function append(data) {
+            var html = '';
+            for (var i = 0; i < data.length; ++i) {
+                html += '<tr>';
+                for (var key in data[i]) {
+                    html += '<td>' + data[i][key] + '</td>';
+                }
+                html += '</tr>';
+            }
+            $('#dataTable').append(html);
+        }
+    </script>
+  </body>
+</html>

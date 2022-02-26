@@ -1,0 +1,17 @@
+<booklist>
+    <book>
+        <name>JavaScript高级程序设计</name>
+        <author>扎卡斯</author>
+        <price>¥78.20</price>
+    </book>
+    <book>
+        <name>HTML5移动Web开发</name>
+        <author>黑马程序员</author>
+        <price>¥39.50</price>
+    </book>
+    <book>
+        <name>MongoDB设计模式</name>
+        <author>科普兰</author>
+        <price>¥28.40</price>
+    </book>
+</booklist>

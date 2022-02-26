@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>什么是jQuery对象</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>Hello jQuery</div>
+    <script>
+        // 创建div元素对象，保存为obj
+        var obj = $('div');
+        // 判断obj是否为jQuery对象
+        alert(obj instanceof jQuery);    // 输出结果：true
+        // 调用html()方法获取元素内容
+        alert(obj.html());               // 输出结果：Hello jQuery
+    </script>
+  </body>
+</html>

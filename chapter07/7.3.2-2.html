@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>print输出字符串</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="template-web.js"></script>
+  </head>
+  <body>
+    <div id="show"></div>
+    <script id="test" type="text/html">
+      {{print flag? opt.num1 + opt.num2 : '此时flag为false'}}
+    </script>
+    <script>
+        var data = {flag: false, opt: {num1: 3, num2: 8}};
+        var con = template('test', data);
+        $('#show').html(con);
+    </script>
+  </body>
+</html>

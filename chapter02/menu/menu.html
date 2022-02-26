@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>折叠式菜单特效</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <script src="js/jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <ul class="menu-list">
+      <li>
+        <p class="menu-head">目标管理</p>
+        <div class="menu-body">
+          <a href="#">主题空间</a>
+          <a href="#">项目任务</a>
+          <a href="#">工作计划</a>
+          <a href="#">日程事件</a>
+          <a href="#">时间视图</a>
+        </div>
+      </li>
+      <li>
+        <p class="menu-head">会议管理</p>
+        <div class="menu-body">
+          <a href="#">主题空间</a>
+          <a href="#">会议安排</a>
+          <a href="#">待开会议</a>
+          <a href="#">已开会议</a>
+          <a href="#">会议资源</a>
+        </div>
+      </li>
+      <li>
+        <p class="menu-head">知识社区</p>
+        <div class="menu-body">
+          <a href="#">我的收藏</a>
+          <a href="#">知识广场</a>
+          <a href="#">文档中心</a>
+          <a href="#">我的博客</a>
+          <a href="#">文档库管理</a>
+        </div>
+      </li>
+      <li>
+        <p class="menu-head">我的工具</p>
+        <div class="menu-body">
+          <a href="#">综合查询</a>
+          <a href="#">通讯录</a>
+          <a href="#">便签</a>
+          <a href="#">计算器</a>
+          <a href="#">万年历</a>
+          <a href="#">常用链接</a>
+        </div>
+      </li>
+    </ul>
+    <script>
+        // 隐藏所有二级菜单
+        $('.menu-head+div').hide();
+        // 需求：单击一个p元素，p元素下面的div就显示出来，显示当前，隐藏其他
+        $('.menu-head').click(function() {
+            // 设置当前菜单右侧图标样式
+            $(this).css('backgroundImage', 'url(img/pro_down.png)');
+            // 显示当前菜单对应的子菜单
+            $(this).next('div').show();
+            // 获取其他菜单外层的li元素
+            var parentli = $(this).parent('li');
+            var lis = parentli.siblings('li');
+            // 找到每个li元素下的主菜单，设置主菜单右侧图标样式
+            lis.children('p').css('backgroundImage','url(img/pro_left.png)')
+            // 隐藏其他主菜单下的子菜单
+            lis.children('div').hide();
+        });
+    </script>
+  </body>
+</html>

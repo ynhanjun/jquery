@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>层次选择器</title>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <p>这是div前面的p元素</p>
+    <div id="dv">
+      <p>这是div中的第1个p元素</p>
+      <ul>
+        <li>这是第1个li元素</li>
+        <li><p>这是第2个li中的p元素</p></li>
+      </ul>
+      <p>这是div中的第2个p元素</p>
+    </div>
+    <p>这是div后面的第1个p元素</p>
+    <p>这是div后面的第2个p元素</p>
+    <p>这是div后面的第3个p元素</p>
+    <script>
+        // 子元素选择器
+        $('#dv > p').css('backgroundColor', 'red');
+        // children()方法
+        $('#dv > p');              // 使用子元素选择器获取
+        $('#dv').children('p');    // 使用children()方法获取
+        // 后代选择器
+        $('#dv p').css('backgroundColor', 'red');
+        // find()方法
+        $('#dv p');               // 使用后代选择器获取
+        $('#dv').find('p');       // 使用find()方法获取
+        // 兄弟选择器
+        $('#dv + p').css('backgroundColor', 'red');
+        $('#dv ~ p').css('backgroundColor', 'red');
+        // next()、nextAll()和siblings()方法
+        // 获取id为dv后紧邻的兄弟元素p
+        $('div').next('p').css('background','red');
+        // 获取id为dv后所有兄弟元素p
+        $('div').nextAll('p').css('background','red');
+        // 获取id为dv的所有兄弟元素p
+        $('div').siblings('p').css('background','red');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>表单组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div class="easyui-panel" title="用户注册" style="width:100%;max-width:400px;padding:30px 50px 30px 30px;">
+      <form id="ff" method="post">
+        <!-- 编写表单项-->
+        <div style="margin-bottom:20px">
+          <input class="easyui-textbox" name="name" style="width:100%" data-options="label:'姓名：',required:true">
+        </div>
+        <div style="margin-bottom:20px">
+          <input class="easyui-textbox" name="email" style="width:100%" data-options="label:'邮箱：',required:true,validType:['email','length[0,20]']">
+        </div>
+        <div style="margin-bottom:20px">
+          <input class="easyui-textbox" name="message" style="width:100%;height:60px" data-options="label:'自我描述：',multiline:true">
+        </div>
+        <div style="margin-bottom:20px">
+          <select class="easyui-combobox" name="language" data-options="label:'语言：'" style="width:100%">
+            <option value="cn">Chinese</option>
+            <option value="en">English</option>
+            <option value="bg">Bulgarian</option>
+            <option value="ca">Catalan</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+      </form>
+      <!-- 可在此处添加链接按钮、完成表单的提交与清除操作，代码可参考链接按钮的示例-->
+    </div>
+  </body>
+</html>

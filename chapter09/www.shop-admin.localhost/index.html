@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="js/jquery-easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="js/jquery-easyui-1.5.4.2/themes/icon.css">
+    <link rel="stylesheet" href="js/webuploader-0.1.5/webuploader.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery-easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="js/jquery-easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+    <script src="js/webuploader-0.1.5/webuploader.html5only.min.js"></script>
+    <script src="js/ueditor1.4.3.3/ueditor.config.js"></script>
+    <script src="js/ueditor1.4.3.3/ueditor.all.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <style>
+      .header{line-height:30px;text-indent:5px;}
+      .menutree{margin-top:10px;margin-left:5px;}
+     .content{padding:10px;padding-right:20px;}
+    </style>
+  </head>
+  <body class="easyui-layout">
+    <div title="系统菜单" data-options="region:'west',split:true,width:'200px'">
+      <ul id="menu" class="easyui-tree menutree">
+        <li>
+          <span>首页管理</span>
+          <ul>
+            <li data-options="attributes:{'url':'home-slide.html'}">焦点图</li>
+            <li data-options="attributes:{'url':'home-news.html'}">最新动态</li>
+          </ul>
+        </li>
+        <li>
+          <span>内容管理</span>
+          <ul>
+            <li data-options="attributes:{'url':'item-list.html'}">管理商品</li>
+            <li data-options="attributes:{'url':'category-list.html'}">管理分类</li>
+          </ul>
+        </li>
+        <li>
+          <span>系统管理</span>
+          <ul>
+            <li>用户退出</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div data-options="region:'center'">
+      <div id="tabs" class="easyui-tabs" data-options="border:false,fit:true">
+        <div title="首页" class="content">
+          <p>欢迎来到商城后台管理系统！</p>
+          <p>请从左侧选择一个操作。</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        function logout() {
+          $.messager.confirm('确认退出', '您确定要退出？', function (r) {
+            if (r) {
+              localStorage.removeItem(Config.tokenName);
+              location.href = 'login.html';
+            }
+          });
+        }
+        $('#menu').tree({
+          onClick: function (node) {
+            if ($(this).tree('isLeaf', node.target)) {
+              // 用户退出
+              if (node.text === '用户退出') {
+                return logout();
+              }
+              var tabs = $('#tabs');
+              // 若相应的TAB栏已经打开，则切换到该TAB栏，否则新增该TAB栏
+              if (tabs.tabs('getTab', node.text)) {
+                tabs.tabs('select', node.text);
+              } else {
+                var href = 'content/' + node.attributes.url;
+                tabs.tabs('add', {
+                  title: node.text,
+                  href: href,
+                  closable: true,
+                  bodyCls: 'content'
+                });
+              }
+            }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

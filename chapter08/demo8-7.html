@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>tabs组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div id="tabs" class="easyui-tabs" data-options="tabPosition:'left',height:200,width:300" >
+      <div title="选项一"></div>
+      <div title="选项二" ></div>
+      <div title="选项三" ></div>
+      <div title="帮助" data-options="iconCls:'icon-help',selected:true,closable:true"></div>
+    </div>
+    <script>
+        $(function() {
+            $('#tabs').tabs('add', {    // 添加一个新的选项卡
+                title: 'new tab',
+                index: 2
+            });
+            $('#tabs').tabs({
+                onSelect: function(title, index) {    // 添加onSelect事件
+                    alert(title + '-' + index);
+                }
+            });
+        });
+    </script>
+  </body>
+</html>

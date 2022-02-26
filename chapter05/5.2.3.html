@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>判断元素是否处于动画状态</title>
+    <style>
+        div {
+            background: #ceedc6;
+            height: 100px;
+            width: 100px;
+            position: fixed;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="按钮"><br><br>
+    <div></div>
+    <script>
+        $('div').animate({width: '+=100px'}, 2000);
+        $('input').click(function() {
+            if (!$('div').is(':animated')) {
+                $('div').animate({
+                    left: '+=100px'
+                }, 1000);
+            }
+        });
+    </script>
+  </body>
+</html>

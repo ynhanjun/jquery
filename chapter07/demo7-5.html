@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>整点温度实况</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="echarts.js"></script>
+  </head>
+  <body>
+    <div id="box" style="width:400px;height:300px"></div>
+    <script>
+        var myChart = echarts.init(document.getElementById('box'));
+        myChart.setOption({
+            title: {text: '整点温度实况'},
+            color: '#675bba',
+            legend: {data: ['温度']},    // 图例数组的名称
+            tooltip: {
+                trigger: 'axis',     // 触发类型：坐标轴触发
+                axisPointer: {       // 坐标轴提示器的配置项
+                    type: 'cross',   // 十字准星指示器
+                    label: {         // 提示器的背景色
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            xAxis: {data: [], name: '时'},    // X轴的名字为“时”，数据为空
+            yAxis: [{
+                type: 'value',                // Y轴是数值轴
+                name: '温度',                 // Y轴的名字
+                min: 0,                       // Y轴的刻度最小值
+                max: 25,                      // Y轴的刻度最大值
+                axisLabel: {
+                    formatter: '{value} °C'  // 设置Y轴刻度的显示格式
+                }
+            }],
+            series: [{
+                name: '温度',
+                type: 'line',        // 设置图表类型为折线型
+                symbol: 'circle',    // 设置为实心圆
+                symbolSize: 10,      // 设定实心点的大小
+                data: []             // 数据为空
+            }]
+        });
+        $.get('demo7-5.json', function(data) {
+            myChart.setOption({
+                xAxis: {data: data.h},
+                series: [{name: '温度', data: data.c}]
+            });
+        });
+    </script>
+  </body>
+</html>

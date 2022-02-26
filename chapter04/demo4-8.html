@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>使用普通方法绑定事件</title>
+    <style>
+        div, span {
+            border: 1px solid #3f3852;
+            margin: 0 auto;
+        }
+        div {
+            width: 200px;
+            height: 100px;
+            background-color: #ede3b9;
+        }
+        span {
+            width: 80px;
+            margin-top: 25px;
+            background-color: #a0edbc;
+            display: inline-block;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>
+      <span>span元素</span>
+    </div>
+    <script>
+        $('span').click(function(event) {
+            console.log('deletateTarget:' + event.delegateTarget);
+            console.log('currentTarget:' + event.currentTarget);
+            console.log('target:' + event.target);
+        });
+    </script>
+  </body>
+</html>

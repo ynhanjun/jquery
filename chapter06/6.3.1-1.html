@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>实现Ajax的基本操作</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+        h3 {
+            margin: 0;
+            padding-left: 30px;
+            font-size: 30px;
+        }
+        h6 {
+            margin: 0;
+            padding-left: 40px;
+            font-size: 20px;
+        }
+        pre {
+            margin: 0;
+            font-size: 20px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn1">$.get()加载数据</button>
+    <button id="btn2">$.ajax()加载数据</button>
+    <div id="box"></div>
+    <script>
+        $('#btn1').click(function() {
+            $.get('target.html', function(data) {
+                $('#box').html(data);
+            }, 'html');
+        });
+        $('#btn2').click(function() {
+            $.ajax({
+                url: 'target.html',
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                dataType: 'html'
+            });
+        });
+    </script>
+  </body>
+</html>

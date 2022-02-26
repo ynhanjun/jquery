@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>设置元素的状态属性</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="checkbox">
+    <input type="checkbox" checked="">
+    <input type="checkbox" checked="checked">
+    <script>
+        $('input:eq(0)').attr('checked');
+        $('input:eq(1)').attr('checked');
+        $('input:eq(2)').attr('checked');
+        $('input').attr('checked', 'checked');
+        $('input').attr('checked', true);
+    </script>
+  </body>
+</html>

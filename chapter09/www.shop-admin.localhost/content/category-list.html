@@ -1,0 +1,118 @@
+<table id="category_list" title="分类列表"></table>
+<div id="add_window" title="新增分类" data-options="closed:true,width:'440px',height:'256px'"></div>
+<script>
+  (function () {
+    var statusEditor = {type: 'combobox', options: {data: [{value: '1', text: '正常'}, {value: '2', text: '下架'}], editable: false, required: true}};
+    var list = $('#category_list');
+    list.treegrid({
+      url: Config.api + 'categories?view=treegrid',
+      method: 'GET',
+      idField: 'id',
+      treeField: 'name',
+      collapsible: true,
+      fit: true,
+      columns: [[
+          {title: '分类名称', field: 'name', editor: 'textbox', width: 250},
+          {title: '排序', field: 'sort', editor: 'numberbox', align: 'right', width: 50},
+          {title: '状态', field: 'status', formatter: formatStatus, editor: statusEditor, width: 55, align: 'center'},
+          {title: '创建时间', field: 'created', width: 130, align: 'center'},
+          {title: '更新时间', field: 'updated', width: 130, align: 'center'}
+        ]],
+      toolbar: [
+        {text: '刷新', iconCls: 'icon-reload', handler: reload}, '-',
+        {text: '新增', iconCls: 'icon-add', handler: add},
+        {text: '删除', iconCls: 'icon-no', handler: del}, '-',
+        {text: '编辑', iconCls: 'icon-edit', handler: edit},
+        {text: '保存', iconCls: 'icon-save', handler: save},
+        {text: '取消', iconCls: 'icon-clear', handler: cancel}
+      ],
+      onCollapse: cancel,
+      loadFilter: Config.xssFilter
+    });
+    var editingId;
+    function reload() {
+      cancel();
+      list.treegrid('unselectAll');
+      list.treegrid('reload');
+    }
+    function add() {
+      if (editingId !== undefined) {
+        list.treegrid('select', editingId);
+        $.messager.alert('操作失败', '请先取消编辑模式。');
+        return;
+      }
+      var node = list.treegrid('getSelected');
+      if (node && list.treegrid('getLevel', node.id) >= 3) {
+        $.messager.alert('操作失败', '当前选择的分类已达到最大层级。');
+        return;
+      }
+      var clone = $('#add_window').clone();
+      $('#add_window').window({
+        modal: true,
+        maximizable: false,
+        iconCls: 'icon-save',
+        href: 'content/category-add.html',
+        onClose: function() {
+          $(this).window('destroy');
+          list.after(clone);
+          clone = $('#add_window').clone();
+        }
+      }).window('open');
+    }
+    function del() {
+      if (editingId !== undefined) {
+        list.treegrid('select', editingId);
+        $.messager.alert('操作失败', '请先取消编辑模式。');
+        return;
+      }
+      var node = list.treegrid('getSelected');
+      if (node && !list.treegrid('isLeaf', node.id)) {
+        $.messager.alert('操作失败', '只能删除最底层的项目。');
+        return;
+      }
+      $.messager.confirm('确认删除', '您确定要删除此项？', function (r) {
+        if (r) {
+          list.treegrid('remove', node.id);
+          $.ajax({
+            type: 'DELETE',
+            url: Config.api + 'categories/' + node.id
+          });
+        }
+      });
+    }
+    function edit() {
+      if (editingId !== undefined) {
+        list.treegrid('select', editingId);
+        return;
+      }
+      var node = list.treegrid('getSelected');
+      if (node) {
+        editingId = node.id;
+        list.treegrid('beginEdit', editingId);
+      }
+    }
+    function save() {
+      if (editingId === undefined) {
+        return;
+      }
+      var id = editingId;
+      editingId = undefined;
+      list.treegrid('endEdit', id);
+      var node = list.treegrid('find', id);
+      $.ajax({
+        type: 'PUT',
+        url: Config.api + 'categories/' + id,
+        data: {name: node.name, sort: node.sort, status: node.status}
+      });
+    }
+    function cancel() {
+      if (editingId !== undefined) {
+        list.treegrid('cancelEdit', editingId);
+        editingId = undefined;
+      }
+    }
+    function formatStatus(val) {
+      return {1: '正常', 2: '下架'}[val];
+    }
+  })();
+</script>

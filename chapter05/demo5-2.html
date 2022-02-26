@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>元素的淡入和淡出</title>
+    <style>
+        div {
+            width: 100px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+        div img {
+            width: 100px;
+            height: 200px;
+        }
+        div img:first-child {
+            display: none;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="开灯">
+    <div>
+      <img src="img/on.png" alt="">
+      <img src="img/off.png" alt="">
+    </div>
+    <script>
+        $('input').click(function(){
+            $('img:last').fadeOut('fast', function() {
+                $('img:first').fadeIn('slow', function() {
+                    $('input').val('灯亮了');
+                });
+            });
+        });
+        $('div').fadeTo(1200, 0.3, function() {
+            console.log('透明度已经调整好');
+        });
+    </script>
+  </body>
+</html>

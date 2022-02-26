@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>样式特效</title>
+    <style>
+        .motto {
+            width: 100px;
+            height: 50px;
+            background: #eee;
+        }
+        .add {
+            width: 150px;
+            height: 80px;
+            background-color: #eec;
+            font-size: 24px;
+        }
+    </style>
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div id="motto" class="motto">行到水穷处，<br>坐看云起时。</div>
+    <button id="toggle">颜色动画</button>
+    <script>
+        $('#motto').hover(function() {
+            $(this).addClass('add', 1000, 'easeOutQuint');
+        }, function() {
+            $(this).removeClass('add', 1000, 'easeInBack');
+        });
+        $('#toggle').click(function() {
+            $('#motto').animate({
+                color: 'white',
+                backgroundColor: 'rgb(30, 30, 30)'
+            });
+        });
+    </script>
+  </body>
+</html>

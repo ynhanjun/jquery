@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>offset()方法</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>offset()方法</div>
+    <script>
+        // 获取div的top和left值
+        console.log($('div').offset().left);
+        console.log($('div').offset().top);
+        // 设置div的left和fop值
+        $('div').offset({left: 200, top: 100});    // 向下移动100像素并向右移动200像素
+        $('div').offset({left: 200});              // 向右移动200像素
+    </script>
+  </body>
+</html>

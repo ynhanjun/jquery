@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>load获取文档内容</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+        h3 {
+            margin: 0;
+            padding-left: 30px;
+            font-size: 30px;
+        }
+        h6 {
+            margin: 0;
+            padding-left: 40px;
+            font-size: 20px;
+        }
+        pre {
+            margin: 0;
+            font-size: 20px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn">加载数据</button>
+    <button id="btn2">筛选内容</button>
+    <div id="box"></div>
+    <script>
+        $('#btn').click(function() {
+            $('#box').load('target.html');
+        });
+        $('#btn2').click(function() {
+            $('#box').load('target.html h3');
+        });
+        $('#box').load('target.html', function(responseData, status, xhr){
+            console.log(responseData);    // 输出请求得到的数据
+            console.log(status);          // 输出请求状态
+            console.log(xhr);             // 输出XMLHttpRequest对象
+        });
+    </script>
+  </body>
+</html>

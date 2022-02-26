@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>事件解绑</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        p {
+            background-color: #6A84E1;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="绑定事件" id="btn1">
+    <input type="button" value="解绑事件" id="btn2">
+    <div id="dv">
+        <p>这是div中的p元素 </p>
+    </div>
+    <script>
+        // 单击第1个按钮为div和div中p元素绑定单击事件
+        $('#btn1').click(function() {
+            $('#dv').on('click', function() {
+                alert('div元素被单击了');
+            });
+            $('#dv').delegate('p', 'click', function() {
+                alert('p元素被单击了');
+            });
+            alert('事件绑定成功');
+        });
+        // 单击第2个按钮为div中p解除绑定事件
+        $('#btn2').click(function() {
+            // 解绑p元素的事件
+            $('#dv').off('click');
+        });
+    </script>
+  </body>
+</html>

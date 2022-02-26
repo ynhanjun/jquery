@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>tree组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div class="easyui-panel" style="padding:5px">
+      <ul class="easyui-tree" data-options="dnd:true,lines:true">
+        <li>
+          <span>文档目录</span>
+          <ul>
+            <li data-options="state:'closed'">
+              <span>图片</span>
+              <ul>
+                <li><span>朋友</span></li>
+                <li><span>家人</span></li>
+                <li><span>公司</span></li>
+              </ul>
+            </li>
+            <li>
+              <span>文件</span>
+              <ul>
+                <li>jQuery UI</li>
+                <li>jQuery EasyUI</li>
+                <li>jQuery Mobile</li>
+              </ul>
+            </li>
+            <li>index.html</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

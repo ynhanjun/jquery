@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>mouseout与mouseleave事件</title>
+    <style>
+        div {
+            background-color: pink;
+            padding: 20px;
+            margin: 30px;
+            width: 350px;
+            height: 100px;
+        }
+        p {
+            margin: 20px;
+            padding: 10px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div class="dv">
+      <h3 style="background-color:white;">
+        mouseout事件被触发<span id="mOut">0</span>次</br>
+        mouseleave事件被触发<span id="mLeave">0</span>次
+      </h3>
+    </div>
+    <script>
+        var x = 0;
+        var y = 0;
+        $('div.dv').mouseout(function() {
+            $('#mOut').text(x += 1);
+        });
+        $('div.dv').mouseleave(function() {
+            $('#mLeave').text(y += 1);
+        });
+    </script>
+  </body>
+</html>

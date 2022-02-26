@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.wrapper {
+    width: 298px;
+    height: 248px;
+    margin: 100px auto 0;
+    border: 1px solid pink;
+    overflow: hidden;
+}
+#left, #center, #right {
+    float: left;
+}
+#left li, #right li {
+    background: url(../img/lili.jpg) repeat-x;
+}
+#left li a, #right li a {
+    display: block;
+    width: 48px;
+    height: 27px;
+    border-bottom: 1px solid pink;
+    line-height: 27px;
+    text-align: center;
+    color: black;
+}
+#left li a:hover, #right li a:hover {
+    color: #fff;
+    background-image: url(../img/abg.gif);
+}
+#center {
+    border-left: 1px solid pink;
+    border-right: 1px solid pink;
+}
+img {
+    width: 200px;
+    height: 250px;
+}

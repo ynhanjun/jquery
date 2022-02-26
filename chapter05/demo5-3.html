@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>元素的滑动</title>
+    <style>
+        img {
+            width: 200px;
+            height: 360px;
+        }
+        .wrap {
+            position: relative;
+            width: 200px;
+            height: 360px;
+        }
+        .wrap div {
+            position: absolute;
+            width: 130px;
+            height: 228px;
+            top: 63px;
+            left: 34px;
+            text-align: center;
+            line-height: 150px;
+        }
+        .wrap div.img1 {
+            z-index: 3;
+            background: pink;
+        }
+        .wrap div.img2 {
+            z-index: 2;
+            background: lightgreen;
+        }
+        .wrap div.img3 {
+            z-index: 1;
+            background: plum;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="滑动">
+    <div class="wrap">
+      <img src="img/iphone.png" alt=""/>
+      <div class="img1">滑动有惊喜</div>
+      <div class="img2">只要努力</div>
+      <div class="img3">一切皆有可能</div>
+    </div>
+    <script>
+        $('input').click(function() {
+            $('.wrap div:first').slideUp(1500, function() {
+                $('.wrap div:eq(1)').slideUp(1000);
+            });
+        });
+    </script>
+  </body>
+</html>

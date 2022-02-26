@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btn" type="button" value="添加两个p元素">
+    <div id="dv"></div>
+    <script>
+        // 为div中p元素绑定事件
+        $('#dv').on('click', 'p', function() {
+            $(this).css('background-color','#6A84E1');
+        });
+        // 单击按钮通过on()方式为div中添加一个元素
+        $('#btn').on('click', function() {
+            // 创建两个p标签，添加到div中
+            $('<p>这是第1个p</p>').appendTo($('#dv'));
+            $('<p>这是第2个p</p>').appendTo($('#dv'));
+        });
+    </script>
+  </body>
+</html>

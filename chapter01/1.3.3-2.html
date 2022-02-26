@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jQuery对象与DOM对象的转换</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>第1个div</div>
+    <div>第2个div</div>
+    <script>
+        // 获取jQuery对象
+        var divs = $('div');
+        // 通过索引的方式，将jQuery对象转换成DOM对象
+        var div1 = divs[0];
+        var div2 = divs[1];
+        // 输出div元素的内容
+        alert(div1.innerHTML);    // 输出结果：第1个div
+        alert(div2.innerHTML);    // 输出结果：第2个div
+    </script>
+  </body>
+</html>

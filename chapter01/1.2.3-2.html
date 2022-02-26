@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>引入jQuery</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div id="myId">content</div>
+    <script>
+        // ① 获取元素的内容
+        var html = $('#myId').html();
+        alert(html);                 // 输出结果：content
+        // ② 设置元素的内容
+        $('#myId').html('Hello');    // 执行后，网页中元素的内容变为Hello
+    </script>
+  </body>
+</html>

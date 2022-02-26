@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>不转义输出</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="template-web.js"></script>
+  </head>
+  <body>
+    <div id="show"></div>
+    <script id="test" type="text/html">
+      默认输出：{{title}}<hr>
+      不转义输出：{{@title}}
+    </script>
+    <script>
+        var con = template('test', {title: '<b>输出</b>'});
+        $('#show').html(con);
+    </script>
+  </body>
+</html>

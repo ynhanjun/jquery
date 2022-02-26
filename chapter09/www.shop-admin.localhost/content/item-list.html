@@ -1,0 +1,344 @@
+<table id="item_list" title="商品列表"></table>
+<script>
+  (function () {
+    var list = $('#item_list');
+    list.datagrid({
+      collapsible: true,
+      pagination: true,
+      pageSize: 20,
+      fit: true,
+      url: Config.api + 'items',
+      method: 'GET',
+      columns: [[
+        {field: 'checkbox', checkbox: true},
+        {title: '新闻名称', field: 'title', width: 200},
+        {title: '卖点', field: 'sell_point', width: 100},
+        {title: '价格', field: 'price', width: 70, align: 'right'},
+        {title: '库存数量', field: 'num', width: 70, align: 'right'},
+        {title: '状态', field: 'status', width: 60, align: 'center', formatter: formatStatus},
+        {title: '创建日期', field: 'created', width: 130, align: 'center'},
+        {title: '更新日期', field: 'updated', width: 130, align: 'center'}
+      ]],
+      toolbar: [
+        {text: '刷新', iconCls: 'icon-reload', handler: reload}, '-',
+        {text: '新增', iconCls: 'icon-add', handler: add},
+        {text: '编辑', iconCls: 'icon-edit', handler: edit}, 
+        {text: '删除', iconCls: 'icon-cancel', handler: del}, '-', 
+        {text: '上架', iconCls: 'icon-ok', handler: function() { status(1); }},
+        {text: '下架', iconCls: 'icon-no', handler: function() { status(2); }}
+      ],
+      loadFilter: Config.xssFilter
+    });
+    function reload() {
+      list.datagrid('reload');
+    }
+    function add() {
+      if ($('.item-edit-0').length > 0) {
+        $.messager.alert('操作失败', '新增商品标签页已经打开。');
+      } else {
+        $('#tabs').tabs('add', {
+          title: '新增商品',
+          href: 'content/item-edit.html',
+          closable: true,
+          bodyCls: 'content item-edit-0',
+          onLoad: function() {
+            itemEdit($(this), 0);
+          }
+        });
+      }
+    }
+    function edit() {
+      var node = list.datagrid('getSelected');
+      if (!node) {
+        $.messager.alert('操作失败', '请先在列表中选择一项。');
+        return;
+      }
+      if (list.datagrid('getSelections').length > 1) {
+         $.messager.alert('操作失败', '只能选择一项进行编辑。');
+         return;
+      }
+      if ($('.item-edit-' + node.id).length > 0) {
+        $.messager.alert('操作失败', '该项正在编辑中。');
+        return;
+      } else {
+        $('#tabs').tabs('add', {
+          title: '编辑商品',
+          href: 'content/item-edit.html',
+          closable: true,
+          bodyCls: 'content item-edit-' + node.id,
+          onLoad: function() {
+            itemEdit($(this), node.id);
+          }
+        });
+      }
+    }
+    function del() {
+      var ids = getSelectionsIds();
+      if (ids.length === 0) {
+        $.messager.alert('操作失败', '未选中商品！');
+        return;
+      }
+      $.messager.confirm('确认', '确定删除选中的 ' + ids.length + ' 件商品吗？', function (r) {
+        if (r) {
+          var url = Config.api + 'items?ids=' + ids.join(',');
+          $.ajax({type: 'DELETE', url: url, success: function() {
+            $.messager.alert('提示', '删除商品成功！', undefined, reload);
+          }});
+        }
+      });
+    }
+    function status(val) {
+      var ids = getSelectionsIds();
+      if (ids.length === 0) {
+        $.messager.alert('操作失败', '未选中商品！');
+        return;
+      }
+      var str = {1: '上架', 2: '下架'}[val];
+      $.messager.confirm('确认操作', '确定' + str + '选中的 ' + ids.length +  ' 件商品吗？', function (r) {
+        if (r) {
+          $.ajax({
+            type: 'PATCH',
+            url: Config.api + 'items?ids=' + ids.join(','),
+            data: {status: val},
+            success: function () {
+              $.messager.alert('提示', str + '商品成功！', undefined, reload);
+            }
+          });
+        }
+      });
+    }
+    function getSelectionsIds() {
+      var sels = list.datagrid('getSelections');
+      var ids = [];
+      for (var i in sels) {
+        ids.push(sels[i].id);
+      }
+      return ids;
+    }
+    function formatStatus(val) {
+      return {1: '正常', 2: '下架'}[val];
+    }
+    function itemEdit(obj, id) {
+      createForm();
+      createCategory();
+      function createForm() {
+        var title = obj.find('[name=title]').textbox();
+        var sell_point = obj.find('[name=sell_point]').textbox();
+        var price = obj.find('[name=price]').numberbox();
+        var num = obj.find('[name=num]').numberbox();
+        var editor = createEditor();
+        if (id === 0) {
+          createImage({pic: '', album: ''});
+        } else {
+          $.get(Config.api + 'items/' + id, function(data) {
+            obj.find('.select_category_name').text(data.category_name);
+            obj.find('[name=cid]').val(data.cid);
+            title.textbox('setValue', data.title);
+            sell_point.textbox('setValue', data.sell_point);
+            price.textbox('setValue', data.price);
+            num.textbox('setValue', data.num);
+            createImage({pic: data.pic, album: data.album});
+            editor.ready(function() {
+              this.setContent(data.content);
+            });
+          });
+        }
+        obj.find('.item-edit-save').click(function() {
+          submit(2);
+        });
+        obj.find('.item-edit-submit').click(function() {
+          submit(1);
+        });
+        function submit(status) {
+          var form = obj.find('.item-edit-form');
+          if (!form.form('validate')) {
+            $.messager.alert('操作失败', '表单还未填写完成！');
+            return;
+          }
+          editor.sync();
+          obj.find('[name=status]').val(status);
+          if (id === 0) {
+            $.post(Config.api + 'items', form.serialize(), function(data) {
+              id = data.id;
+              $.messager.alert('提示', '保存成功。', undefined, function() {
+                $('#tabs').tabs('close', '新增商品');
+                reload();
+              });
+            });
+          } else {
+            $.ajax({type: 'PUT', url: Config.api + 'items/' + id, data: form.serialize(), success: function(){
+              $.messager.alert('提示', '保存成功。');
+            }});
+          }
+        }
+      }
+      // 分类选择组件
+      function createCategory() {
+        var selbtn = obj.find('.select_category');
+        var selname = obj.find('.select_category_name');
+        var treewin = obj.find('.tree_window').clone();
+        selbtn.click(function() {
+          treewin.window({
+            onOpen: function() {
+              $(this).find('ul').tree({
+                url: Config.api + 'categories?view=tree',
+                method: 'GET',
+                animate: true,
+                onClick: function(node) {
+                  if ($(this).tree('isLeaf', node.target)) {
+                    selbtn.parent().find('[name=cid]').val(node.id);
+                    selname.text(node.text);
+                    treewin.window('close');
+                  }
+                }
+              });
+            },
+            onClose: function() {
+              $(this).window('destroy');
+              treewin = obj.find('.tree_window').clone();
+            }
+          });
+        });
+      }
+      // 在线编辑器
+      function createEditor() {
+        UEDITOR_CONFIG['UEDITOR_HOME_URL'] = '/js/ueditor1.4.3.3/';
+        UEDITOR_CONFIG['serverUrl'] = '';
+        UEDITOR_CONFIG['textarea'] = 'Content';
+        UEDITOR_CONFIG['elementPathEnabled'] = false;
+        UEDITOR_CONFIG['toolbars'] = [['fullscreen', 'source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough', 'forecolor', 'backcolor', 'fontfamily', 'fontsize'], ['paragraph', 'link', 'blockquote', 'insertorderedlist', 'insertunorderedlist', '|', 'inserttable', 'insertrow', 'insertcol']];
+        UE.plugin.register('autosave', function (){}); // 禁用自动保存    
+        var ue_id = 'item_edit_content_' + id;
+        obj.find('[name=content]').attr('id', ue_id);
+        UE.delEditor(ue_id);
+        return UE.getEditor(ue_id);
+      }
+      function createImage(image) {
+        var pic = imagesUploader(obj.find('.upload_pic'), 'pic', 1);
+        var album = imagesUploader(obj.find('.upload_album'), 'album', 10);
+        // 向列表中添加的图片
+        var url = Config.uploadURL;
+        if (image.pic !== '') {
+          var picList = obj.find('.upload_pic .webuploader-list');
+          var item = fileItem(false, false, url + image.pic);
+          picList.append(item);
+          fileControl(item, image.pic);
+        }
+        if (image.album !== '') {
+          var albumList = obj.find('.upload_album .webuploader-list');
+          var albs = image.album;
+          for (var i in albs) {
+            var item = fileItem(false, false, url + albs[i].replace('[prefix]', 'album_small_'));
+            albumList.append(item);
+            fileControl(item, albs[i]);
+          }
+        }
+        function updateId(relation_id) {
+          function replace(obj) {
+            obj.server = obj.server.replace('&relation_id=0', '&relation_id=' + id);
+          }
+          id = relation_id;
+          replace(pic.options);
+          replace(album.options);
+        }
+        function fileItem(fid, name, src) {
+          var item = $('<div class="webuploader-file-item webuploader-thumbnail"><img></div>');
+          fid && item.attr('id', fid);
+          name && item.append('<div class="webuploader-info">' + name + '</div>');
+          src && item.find('img').attr('src', src);
+          return item;
+        }
+        function fileControl(obj, path) {
+           obj.append('<div class="webuploader-opt"><span class="webuploader-del">[删除]</span></div>');
+           obj.append('<input class="webuploader-url" type="hidden" value="' + path + '">');
+        }
+        function imagesUploader(obj, name, max) {
+          var picker_id = name + '_picker_' + id;
+          obj.find('.webuploader-file-picker').attr('id', picker_id);
+          var url = Config.api + 'files?type=image&name=' + name + '&relation=item&relation_id=' + id;
+          var uploader = WebUploader.create({
+            auto: true,             // 选完文件后，是否自动上传
+            server: url,            // 文件接收服务端
+            pick: '#' + picker_id,  // 选择文件的按钮
+            fileVal: name,          // 上传的name
+            duplicate: true,        // 允许重复上传同一张图片
+            accept: {              // 只允许选择图片文件
+              title: 'Images',
+              extensions: 'gif,jpg,jpeg,bmp,png',
+              mimeTypes: 'image/*'
+            }
+          });
+          obj.find('.webuploader-list').on('click', '.webuploader-del', function () {
+            var pObj = $(this).parents('.webuploader-file-item');
+            $.messager.confirm('确认删除', '您确定要立即删除此图片？', function (r) {
+              if (r) {
+                $.ajax({
+                  type: 'DELETE',
+                  url: Config.api + 'files?relation=item&relation_id=' + id,
+                  data: {name: name, path: pObj.find('.webuploader-url').val()},
+                  success: function() {
+                    pObj.remove();
+                  }
+                });
+              }
+            });
+          });
+          // 将认证令牌放入请求头
+          uploader.on('uploadBeforeSend', function (obj, data, headers) {
+            headers.Authorization = Config.token;
+          });
+          // 当有文件添加时，判断文件数量，
+          uploader.on('beforeFileQueued', function () {
+            if (obj.find('.webuploader-url').length >= max) {
+              $.messager.alert('操作失败', '最多只能上传' + max + '张图片！');
+              return false;
+            }
+          });
+          // 当有文件添加后，显示预览图
+          uploader.on('fileQueued', function (file) {
+            var li = fileItem(file.id, file.name);
+            var img = li.find('img');
+            obj.find('.webuploader-list').append(li);
+            uploader.makeThumb(file, function (error, src) {
+              if (error) {
+                img.replaceWith('<span class="webuploader-tip">不能预览</span>');
+                return;
+              }
+              img.attr('src', src);
+            }, 100, 100);
+          });
+          // 上传过程中创建进度条显示进度
+          uploader.on('uploadProgress', function (file, percentage) {
+            var li = $('#' + file.id);
+            var percent = li.find('.webuploader-progress span');
+            if (!percent.length) {
+              percent = $('<p class="webuploader-progress"><span></span></p>').appendTo(li).find('span');
+            }
+            percent.css('width', percentage * 100 + '%');
+          });
+          // 上传成功
+          uploader.on('uploadSuccess', function (file, response) {
+            var li = $('#' + file.id);
+            if (!li.find('.webuploader-done').length) {
+              id === 0 && updateId(response.relation_id);
+              fileControl(li, response.path);
+            }
+          });
+          // 上传失败，显示错误提示
+          uploader.on('uploadError', function (file) {
+            var li = $('#' + file.id);
+            var error = li.find('div.webuploader-error');
+            if (!error.length) {
+              error = $('<div class="webuploader-error">上传失败</div>').appendTo(li);
+            }
+          });
+          // 上传完成，删除进度条
+          uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.webuploader-progress').remove();
+          });
+          return uploader;
+        }
+      }
+    }
+  })();
+</script>

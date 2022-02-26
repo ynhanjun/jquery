@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>width()和height()方法</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: darkorange;
+            border-radius:25%;
+            color: aliceblue;
+            text-align: center;
+            padding: 10px;
+            line-height: 25px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="按钮">
+    <div>只要努力，人生的长度和宽度都可以改变</div>
+    <script>
+        $('input').click(function() {
+            $('div').width($('div').width() + 50);
+            $('div').height($('div').height() + 50);
+        });
+    </script>
+  </body>
+</html>

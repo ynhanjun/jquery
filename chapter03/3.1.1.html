@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>通过函数设置样式</title>
+    <style>
+        div {
+            background:#ccc;
+            width:100px;
+            margin: 5px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>0</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        $('div').css('width', function(index, value) {
+            return parseFloat(value) * 2 + 'px';
+        });
+        $('div').css('width', function(index, value) {
+            if (index === 3) {
+                return parseFloat(value) * 2;
+            }
+        });
+    </script>
+  </body>
+</html>

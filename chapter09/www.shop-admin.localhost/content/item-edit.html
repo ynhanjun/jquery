@@ -1,0 +1,65 @@
+<div style="padding:10px">
+  <form class="item-edit-form" method="post">
+    <table cellpadding="5">
+      <tr>
+        <td style="white-space:nowrap;">商品分类：</td>
+        <td>
+          <a class="select_category easyui-linkbutton" href="#" data-options="width:'70px',height:'28px'">选择分类</a>
+          <span class="select_category_name" style="margin-left:10px;vertical-align:middle;"></span>
+          <input type="hidden" name="cid">
+        </td>
+      </tr>
+      <tr>
+        <td>商品标题：</td>
+        <td><input name="title" data-options="required:true,validType:'length[0,80]',width:'280px'"></td>
+      </tr>
+      <tr>
+        <td>商品卖点：</td>
+        <td><input name="sell_point" data-options="multiline:true,validType:'length[0,150]',height:'60px',width:'280px'"></td>
+      </tr>
+      <tr>
+        <td>商品价格：</td>
+        <td>
+          <input name="price" data-options="min:0,max:99999999,precision:2,required:true">
+        </td>
+      </tr>
+      <tr>
+        <td>库存数量：</td>
+        <td><input name="num" data-options="min:0,max:99999999,precision:0,required:true"></td>
+      </tr>
+      <tr>
+        <td>商品图片：</td>
+        <td>
+          <div class="upload_pic">
+            <div class="webuploader-list"></div>
+            <div class="webuploader-file-picker">选择图片</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>商品相册：</td>
+        <td>
+          <div class="upload_album">
+            <div class="webuploader-list"></div>
+            <div class="webuploader-file-picker">选择图片</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>商品描述：</td>
+        <td>
+          <textarea name="content" style="width:700px;height:300px;"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="hidden" name="status" value="1">
+          <a class="easyui-linkbutton item-edit-save" data-options="width:'80px',height:'30px'" href="#">保存草稿</a>
+          <a class="easyui-linkbutton item-edit-submit" data-options="width:'90px',height:'30px'" href="#">保存并上架</a>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <div class="tree_window" title="选择分类" data-options="modal:true,width:'500px',height:'450px'" style="padding:10px"><ul></ul></div>
+</div>

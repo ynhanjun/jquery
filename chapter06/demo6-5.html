@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>发送数据</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+        h3 {
+            margin: 0;
+            padding-left: 30px;
+            font-size: 30px;
+        }
+        h6 {
+            margin: 0;
+            padding-left: 40px;
+            font-size: 20px;
+        }
+        pre {
+            margin: 0;
+            font-size: 20px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn1">GET</button>
+    <button id="btn2">POST</button>
+    <div id="box"></div>
+    <script>
+        var userData = {username: '小明', password: 123456};
+        $('#btn1').click(function() {
+            $.get('register.php', userData, function(data) {
+                $('#box').html(data);
+            }, 'html');
+        });
+        $('#btn2').click(function() {
+            $.post('register.php', userData, function(data) {
+                $('#box').html(data);
+            }, 'html');
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>创建节点</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btn" type="button" value="创建节点">
+    <div id="dv"></div>
+    <script>
+        // 单击按钮，在div中创建两个超链接
+        $('#btn').click(function() {
+            // 在div中添加HTML代码
+            $('#dv').html('<a href="#">腾讯</a><br>');
+            // 创建元素
+            var aObj = $('<a href="#">百度</a>');
+            // 把元素添加到div中
+            $('#dv').append(aObj);
+        });
+    </script>
+  </body>
+</html>

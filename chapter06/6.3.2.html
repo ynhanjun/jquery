@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ajax错误处理</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn1">成功</button>
+    <button id="btn2">失败</button>
+    <script>
+        $('#btn1').click(function() {
+            $.post('register.php', function() {
+                console.log('success');
+            })
+            .done(function() {
+                console.log('done');
+            })
+            .fail(function() {
+                console.log('fail');
+            })
+            .always(function() {
+                console.log('always'); 
+            });
+        });
+        $('#btn2').click(function() {
+            $.post('reg.php', function() {
+                console.log('success');
+            })
+            .done(function() {
+                console.log('done');
+            })
+            .fail(function() {
+                console.log('fail');
+            })
+            .always(function() {
+                console.log('always'); 
+            });
+        });
+    </script>
+  </body>
+</html>

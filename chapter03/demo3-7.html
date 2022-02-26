@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>innerWidth()innerHeight()方法</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: pink;
+            padding: 10px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="获取元素的宽高">
+    <div>你是自己人生的导演</div>
+    <script>
+        $('input').click(function() {
+            console.log($('div').width());
+            console.log($('div').height());
+            console.log($('div').innerWidth());
+            console.log($('div').innerHeight());
+        });
+    </script>
+  </body>
+</html>

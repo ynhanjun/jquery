@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>获取和设置元素HTML内容和文本</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <script>
+        $('#p1').html('Hello world!');
+        $('#p2').text('Hello world!');
+        $('#p1').html('<h3>Hello world!</h3>');
+        $('#p2').text('<h3>Hello world!</h3>');
+    </script>
+  </body>
+</html>

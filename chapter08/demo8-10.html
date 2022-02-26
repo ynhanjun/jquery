@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>switchbutton组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div style="margin:20px 0;">
+      <a href="#" class="easyui-linkbutton" onclick="$('#s').switchbutton('disable')">Disable</a>
+      <a href="#" class="easyui-linkbutton" onclick="$('#s').switchbutton('enable')">Enable</a>
+    </div>
+    <input id="s" class="easyui-switchbutton" style="width:80px;height:40px" data-options="onText:'开',offText:'关'" >
+  </body>
+</html>

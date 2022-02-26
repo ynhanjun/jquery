@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>$.getScript()加载脚本</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+    <script>
+        $('#btn').click(function() {
+            $.getScript('lib/createEle.js',function() {
+                var styleObj = {
+                    width: '100px',
+                    height: '100px',
+                    background: 'blue'
+                };
+                var divBox = createEle('div', styleObj);
+                $('body').append(divBox);
+            });
+        });
+    </script>
+  </body>
+</html>

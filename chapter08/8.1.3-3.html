@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Datepicker组件</title>
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>
+    <span id="demo"></span>
+    <script>
+        $.datepicker.setDefaults({
+            numberOfMonths: 2,
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六']
+        });
+        $('#demo').datepicker();
+    </script>
+  </body>
+</html>

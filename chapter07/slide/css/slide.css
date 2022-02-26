@@ -1,0 +1,40 @@
+/* 最外层容器的样式 */
+.slide {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+/* 图片区域的样式 */
+.slide ul {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.slide ul li {
+    position: absolute;
+    display: none;
+}
+/* 小圆点区域的样式 */
+.slide-nav {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    height: 30px;
+    line-height: 34px;
+    width: 100%; 
+    background: rgba(0,0,0,0.2);
+    text-align: center;
+}
+.slide-nav a {
+    background:#fff;
+    border-radius:7px;
+    width:14px;
+    height:14px;
+    display:inline-block;
+    margin:0 5px;
+    cursor:pointer;
+}
+.slide-nav .slide-curr {
+    background:#ff6700;
+}

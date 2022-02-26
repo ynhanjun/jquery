@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>向服务器发送数据</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+        h3 {
+            margin: 0;
+            padding-left: 30px;
+            font-size: 30px;
+        }
+        h6 {
+            margin: 0;
+            padding-left: 40px;
+            font-size: 20px;
+        }
+        pre {
+            margin: 0;
+            font-size: 20px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="btn">加载数据</button>
+    <div id="box"></div>
+    <script>
+        $('#btn').click(function() {
+            $('#box').load('register.php', {username: '小明', password: 18});
+        });
+    </script>
+  </body>
+</html>

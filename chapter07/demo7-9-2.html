@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>快速体验编辑器</title>
+    <script src="ueditor/ueditor.config.js"></script>
+    <script src="ueditor/ueditor.all.min.js"></script>
+  </head>
+  <body>
+    <div id="content" style="width:500px;height:200px;"></div>
+    <script>
+        // 方式1：修改ueditor的配置文件
+        UEDITOR_CONFIG['toolbars'] = [['fullscreen', 'source', '|',
+            'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough',
+            'forecolor', 'backcolor', 'fontfamily', 'fontsize'
+        ]];
+        // 方式2：在实例化编辑器时，定制工具栏按钮
+        var ue = UE.getEditor('content', {
+            toolbars: [['fullscreen', 'source', '|', 
+                'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough',
+                'forecolor', 'backcolor', 'fontfamily', 'fontsize']]
+        });
+        var ue = UE.getEditor('content');
+    </script>
+  </body>
+</html>

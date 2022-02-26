@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jQuery对象与DOM对象的转换</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>第1个div元素</div>
+    <script>
+        var result = $('div').get(0).innerHTML;
+        alert(result);    // 输出结果：第1个div元素
+    </script>
+  </body>
+</html>

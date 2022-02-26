@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>停止元素动画的方法</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <button id="stop1">停止</button>
+    <button id="stop2">停止所有</button>
+    <button id="stop3">停止但要完成</button>
+    <button id="stop4">完成当前并继续</button>
+    <p><b>"停止"</b> 停止当前动画，继续执行下一个动画。</p>
+    <p><b>"停止所有"</b> 按钮停止当前活动的动画，并清空动画队列。</p>
+    <p><b>"停止但要完成"</b> 完成当前动画，然后停止动画。</p>
+    <p><b>"完成当前并继续"</b> 完成当前动画，继续执行下一个动画。</p>
+    <div style="background:#ceedc6;height:100px;width:100px;">animate</div>
+    <script>
+        // 开始动画
+        $('div').animate({fontSize: '3em'}, 5000);     // 动画1
+        $('div').animate({width: '+=100px'}, 5000);    // 动画2
+        // 停止
+        $('#stop1').click(function() {
+            $('div').stop();
+        });
+        // 停止所有
+        $('#stop2').click(function() {
+            $('div').stop(true);
+        });
+        // 停止但要完成
+        $('#stop3').click(function() {
+            $('div').stop(true, true);
+        });
+        // 完成当前并继续
+        $('#stop4').click(function() {
+            $('div').stop(false, true);
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>阻止事件冒泡</title>
+    <style>
+        div, p, span {
+            border: 1px solid #3f3852;
+            margin: 0 auto;
+        }
+        div {
+            width: 200px;
+            height: 150px;
+            background-color: #ede3b9;
+        }
+        p {
+            width: 150px;
+            height: 100px;
+            background-color: #6a84e1;
+        }
+        span {
+            width: 80px;
+            margin-top: 25px;
+            background-color: #a0edbc;
+            display: inline-block;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>
+      div元素
+      <p>
+        p元素
+        <span>span元素</span>
+      </p>
+    </div>
+    <script>
+        // 为span元素绑定click事件
+        $('span').click(function() {
+            console.log('span元素被单击了');
+        });
+        // 为p元素绑定click事件
+        $('p').click(function() {
+            console.log('p元素被单击了');
+        });
+        // 为div元素绑定click事件
+        $('div').click(function() {
+            console.log('div元素被单击了');
+        });
+    </script>
+  </body>
+</html>

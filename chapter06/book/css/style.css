@@ -1,0 +1,16 @@
+.container{font-size:13px;text-align:center}
+.top{padding:10px 0 20px 0;min-width:400px}
+.top input[type=text]{width:200px;height:30px;padding:0 4px;box-sizing:border-box;vertical-align:middle}
+.top button{width:60px;height:30px;margin-left:10px;vertical-align:middle;cursor:pointer}
+.edit{display:none}
+.booklist table{border:1px solid #ccc;border-collapse:collapse;margin:0 auto;word-break:keep-all}
+.booklist th{border:1px solid #ccc;padding:6px 20px}
+.booklist td{border:1px solid #ccc;padding:6px 20px}
+.booklist a{color:#0D65FD;text-decoration:none}
+.booklist a:hover{color:#CB0112}
+.edit{position:fixed;top:0;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center}
+.edit-bg{position:absolute;width:100%;height:100%;background-color:#000;opacity:.5}
+.edit-center{position:fixed;background:#fff;padding:20px 40px;border-radius:20px}
+.edit-center span{display:inline-block;width:80px;text-align:right;margin-right:5px}
+.edit-center input[type=text]{margin-right:25px;padding:2px 3px}
+.edit-center button{padding:3px 12px;cursor:pointer;margin:0 5px}

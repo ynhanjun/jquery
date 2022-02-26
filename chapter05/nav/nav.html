@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>导航下拉菜单</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="nav-wrap">
+      <div id="nav">
+        <ul>
+          <li class="nav">
+            <a href="#">首页</a>
+          </li>
+          <li class="nav">
+            <a href="#">幸福年货节</a>
+          </li>
+          <li class="nav">
+            <a href="#">新品直达站</a>
+          </li>
+          <li class="nav">
+            <a href="#">女装<img src="img/arrow.jpg"></a>
+            <ul class="list" style="width:76px;">
+              <li><a href="#">韩流时尚</a></li>
+              <li><a href="#">日系森女</a></li>
+              <li><a href="#">英伦帅气</a></li>
+              <li><a href="#">欧美风尚</a></li>
+            </ul>
+          </li>
+          <li class="nav">
+            <a  href="#">美妆<img src="img/arrow.jpg"></a>
+            <ul class="list" style="width:68px;">
+              <li><a href="#">面膜</a></li>
+              <li><a href="#">护肤</a></li>
+              <li><a href="#">彩妆</a></li>
+              <li><a href="#">精华</a></li>
+              <li><a href="#">护肤套装</a></li>
+            </ul>
+          </li>
+          <li class="nav">
+            <a  href="#">国际<img src="img/arrow.jpg"></a>
+            <ul class="list" style="width:48px;">
+              <li><a href="#">韩国</a></li>
+              <li><a href="#">日本</a></li>
+              <li><a href="#">欧洲</a></li>
+              <li><a href="#">美洲</a></li>
+            </ul>
+          </li>
+          <li class="nav">
+            <a href="#">运动</a>
+          </li>
+          <li class="nav">
+            <a href="#">母婴</a>
+          </li>
+          <li class="nav">
+            <a  href="#">鞋包<img src="img/arrow.jpg"></a>
+            <ul class="list" style="width:48px;">
+              <li><a href="#">女鞋</a></li>
+              <li><a href="#">男鞋</a></li>
+              <li><a href="#">女包</a></li>
+              <li><a href="#">男包</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $('.nav').hover(function(){
+            $(this).find('.list').stop().slideDown(500);
+        }, function(){
+            $(this).find('.list').stop().slideUp(500);
+        }).mousemove(function(){
+            $(this).css({
+                background: '#ff78f2'
+            }).mouseleave(function(){
+                $(this).css({
+                    background: '#e60ceb'
+                });
+            });
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>复制节点</title>
+    <style>
+        div {
+            width: 300px;
+            height: 100px;
+            background-color: #ed577f;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="复制节点" id="btn">
+    <div id="dv">
+      <span>越努力越幸运</span>
+    </div>
+    <div id="dv1"></div>
+    <script>
+        $('#btn').click(function() {
+            // 复制第一个div中的span元素生成副本
+            var spanObj = $('#dv>span').clone();
+            // 设置副本的样式
+            spanObj.css('fontSize', '30px');
+            $('#dv1').append(spanObj);
+        });
+    </script>
+  </body>
+</html>

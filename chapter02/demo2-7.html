@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>子元素过滤选择器</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li>北京</li>
+      <li>上海</li>
+    </ul>
+    <ul>
+      <li>广州</li>
+      <li>深圳</li>
+    </ul>
+    <ul>
+      <li>天津</li>
+    </ul>
+    <ul>
+      <li>重庆</li>
+    </ul>
+    <script>
+        $('li:only-child').css('background', 'orange');
+        $('li:nth-child(1)').css('background', 'orange');
+    </script>
+  </body>
+</html>

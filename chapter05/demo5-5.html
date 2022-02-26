@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>加入表达式的动画</title>
+    <style>
+       div {
+           width: 160px;
+           height: 10px;
+           padding: 20px;
+           text-align: center;
+           overflow: hidden;
+           position: absolute;
+           background: url("img/flag.png")  top center no-repeat;
+           background-size:200px 500px;
+       }
+       div span {
+           margin-top: 50px;
+           margin-left: -10px;
+           line-height: 50px;
+           display: inline-block;
+           width: 20px;
+           font-family: "KaiTi";
+           font-size: 40px;
+           color: #ff0;
+       }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="按钮"><br>
+    <div>
+      <span>青春有志须勤奋</span>
+    </div>
+    <script>
+        $('input').click(function() {
+            $('div').animate({
+                height: '+=470px',
+                left: '+=150px',
+                top: '+=50px'
+            }, 1500, function() {
+                $('div').animate({
+                    height: '-=470px',
+                    left: '-=150px',
+                    top: '-=50px'
+                }, 1000);
+            });
+        });
+    </script>
+  </body>
+</html>

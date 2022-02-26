@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>messager组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <script>
+        $.messager.show({
+            width: 200,
+            height: 30,
+            title: '通知',
+            msg: '这是一条推送消息！',
+            showSpeed: 1000,
+            timeout: 0,
+            showType: 'slide'
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>extend()方法的使用</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <script>
+        var defaults = {sub: 'js', info: {id: 2, name: 'Tom'}};
+        var obj = {info: {name: 'Jimmy'}, score: 96};
+        var newObj = $.extend(true, {}, defaults, obj);
+        // 输出结果：{sub: "js", info: {id: 2, name: "Jimmy"}, score: 96}
+        console.log(newObj);
+    </script>
+  </body>
+</html>

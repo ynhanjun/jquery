@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>通过函数设置样式</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btn" type="button" value="设置样式">
+    <div></div>
+    <div></div>
+    <script>
+        $('div').css({backgroundColor: 'pink', width: '100px', height: '50px', 'border-radius': '50%'});
+        $('#btn').click(function() {
+            // 在原有样式的基础上，为div元素设置新样式
+            $('div').css({
+                width: function(index, value) {
+                    return parseFloat(value) * 2;
+                },
+                height: function(index, value) {
+                    // 为索引值为1的匹配元素设置高度
+                    if (index === 1) {
+                        return parseFloat(value) * 2;
+                    }
+                }
+            });
+        });
+    </script>
+  </body>
+</html>

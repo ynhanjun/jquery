@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jQuery动态添加和删除数据</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div>
+        <input type="button" value="添加数据" id="j_btnAddData" class="btnAdd">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>课程名称</th>
+            <th>所属学院</th>
+            <th>已学会</th>
+          </tr>
+        </thead>
+        <tbody id="j_tb">
+          <tr>
+            <td>JavaScript</td>
+            <td>信息工程系</td>
+            <td><a href="javascrip:;" class="del">删除</a></td>
+          </tr>
+          <tr>
+            <td>css</td>
+            <td>信息工程系</td>
+            <td><a href="javascrip:;" class="del">删除</a></td>
+          </tr>
+          <tr>
+            <td>html</td>
+            <td>信息工程系</td>
+            <td><a href="javascrip:;" class="del">删除</a></td>
+          </tr>
+          <tr>
+            <td>jQuery</td>
+            <td>信息工程系</td>
+            <td><a href="javascrip:;" class="del">删除</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="j_mask" class="mask"></div>
+    <div id="j_formAdd" class="form-add">
+      <div class="form-add-title">
+        <span>添加数据</span>
+        <div id="j_hideFormAdd">x</div>
+      </div>
+      <div class="form-item">
+        <label class="lb" for="j_txtLesson">课程名称：</label>
+        <input class="txt" type="text" id="j_txtLesson" placeholder="请输入课程名称">
+      </div>
+      <div class="form-item">
+        <label class="lb" for="j_txtBelSch">所属学院：</label>
+        <input class="txt" type="text" id="j_txtBelSch" value="信息工程系" readonly>
+      </div>
+      <div class="form-submit">
+        <input type="button" value="添加" id="j_btnAdd">
+      </div>
+    </div>
+    <script>
+        // 单击“添加数据”按钮，显示遮罩层和弹出框
+        $('#j_btnAddData').click(function() {
+            $('#j_mask').css('display', 'block');
+            $('#j_formAdd').css('display', 'block');
+        });
+        // 单击“关闭”按钮，隐藏遮罩层和弹出框
+        $('#j_hideFormAdd').click(function() {
+            $('#j_mask').css('display', 'none');
+            $('#j_formAdd').css('display', 'none');
+        });
+        // 添加数据
+        $('#j_btnAdd').click(function() {
+            // 获取课程  j_txtLesson
+            var lesson = $('#j_txtLesson').val();
+            // 获取学院  j_txtBelSch
+            var belSch = $('#j_txtBelSch').val();
+            // 创建行  拼接字符串,添加到tbody中
+            $('<tr><td>' + lesson + '</td><td>' + belSch + '</td><td><a href="javascrip:;" class="del">删除</a></td></tr>').appendTo($('#j_tb'));
+            // 隐藏遮罩层和填出框
+            $('#j_mask').css('display', 'none');
+            $('#j_formAdd').css('display', 'none');
+            // 清空课程的文本框
+            $('#j_txtLesson').val('');
+        });
+        // 获取tbody中应用.get类样式的元素,绑定单击事件
+        $('#j_tb').on('click', '.del', function () {
+            // 删除tr
+            $(this).parent().parent().remove();
+        });
+    </script>
+  </body>
+</html>

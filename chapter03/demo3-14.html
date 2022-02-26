@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>删除节点</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul id="ul1">
+        <li><span>序列号1</span></li>
+        <li><span>序列号2</span></li>
+        <li><span>序列号3</span></li>
+      </ul>
+      <hr>
+  `   <ul id="ul2">
+        <li><span>序列号1</span></li>
+        <li><span>序列号2</span></li>
+        <li><span>序列号3</span></li>
+      </ul>
+    </nav>
+    <script>
+        // 删除序列号2列表项
+        $('#ul1 li:eq(1)').remove();
+        // 删除序列号2列表项的内容
+        $('#ul2 li:eq(1)').empty();
+    </script>
+  </body>
+</html>

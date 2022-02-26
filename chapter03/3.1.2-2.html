@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>在操作元素类的方法中使用函数</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div class="div0">0</div>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+    <div class="div3">3</div>
+    <script>
+        // addClass()方法
+        $('div').addClass(function(index, value) {
+            console.log('元素的索引：' + index);
+            console.log('元素原来的class值：' + value);
+            return 'item-' + index;    // 将返回值作为要添加的class
+        });
+        // removeClass()方法
+        $('div').removeClass(function(index, value) {
+            return 'item-' + index;    // 将返回值作为要移除的class
+        });
+        // toggleClass()方法
+        $('div').toggleClass(function(index, value) {
+            return 'item-' + index;    // 将返回值作为要切换的class
+        });
+    </script>
+  </body>
+</html>

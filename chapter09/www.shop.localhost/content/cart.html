@@ -1,0 +1,144 @@
+<div class="uc">
+  <div class="uc-menu">
+    <div class="uc-menu-photo">
+      <img src="./img/avatar.png" alt="用户头像">
+    </div>
+    <dl>
+      <dt>我的交易</dt>
+      <dd><a href="cart.html">我的购物车</a></dd>
+      <dd>我的订单</dd>
+      <dd>评价管理</dd>
+    </dl>
+    <dl>
+      <dt>我的账户</dt>
+      <dd>个人资料</dd>
+      <dd>密码修改</dd>
+      <dd>收货地址</dd>
+    </dl>
+  </div>
+  <div class="uc-content">
+    <div class="uc-content-title">我的购物车</div>
+    <table class="shopcart"></table>
+    <script id="shopcart_tpl" type="text/html">
+      <tr>
+        <th width="60"><a href="#" class="shopcart-checkall">全选</a></th>
+        <th class="shopcart-lt">商品名称</th><th width="150">单价(元)</th><th width="105">数量</th><th width="90">操作</th>
+      </tr>
+      {{each cart v1}}
+      {{each item v2}}
+      {{if v1.id === v2.id}}
+      <tr class="shopcart-item">
+        <td><input type="checkbox" class="shopcart-check"></td>
+        <td class="shopcart-lt"><a href="item-{{v2.id}}.html" target="_blank" class="bold">{{v2.title}}</a></td>
+        <td><span class="shopcart-price">{{v2.price}}</span></td>
+        <td>
+          <button class="shopcart-num-sub">-</button><input class="shopcart-num" type="text" value="{{v1.num}}"><button class="shopcart-num-add">+</button>
+          <input class="shopcart-id" type="hidden" value="{{v2.id}}">
+          <input class="shopcart-stock" type="hidden" value="{{v2.num}}">
+        </td>
+        <td><a href="#" class="shopcart-del">删除</a></td>
+      </tr>
+      {{/if}}
+      {{/each}}
+      {{/each}}
+      <tr class="shopcart_sum-act">
+        <td><a href="#" class="shopcart-checkall">全选</a></td>
+        <td class="shopcart-rt" colspan="4">
+          共<span class="shopcart-sum"></span>件商品 总计：<span class="shopcart-total">￥<span></span></span>
+          <input type="submit" value="提交订单" class="shopcart-order">
+        </td>
+      </tr>
+    </script>
+  </div>
+</div>
+<script>
+  (function() {
+    var cart = Common.getCart();
+    var ids = [];
+    for (var i in cart) {
+      ids.push(cart[i].id);
+    }
+    $.get(Config.api + 'items', {view: 'shopcart', ids: ids.join(',')}, function(data) {
+      $('.shopcart').html(template('shopcart_tpl', {item: data, cart: cart}));
+      loadSuccess();
+    });
+    function loadSuccess() {
+      var check = $('.shopcart-check');
+      var checked = false;
+      check.click(total); 
+      $('.shopcart-checkall').click(checkAll);
+      checkAll();
+      function checkAll() {
+        checked = !checked;
+        check.prop('checked', checked);
+        check.attr('checked', checked);
+        total();
+      }
+      // 计算总价
+      function total() {
+        var sum = 0;  // 总数量
+        var total = 0;  // 总价格
+        // 遍历勾选的商品
+        $('.shopcart-check:checked').each(function() {
+          var item = $(this).parents('.shopcart-item');
+          var price = parseFloat(item.find('.shopcart-price').text());
+          var num = parseInt(item.find('.shopcart-num').val());
+          sum += num;
+          total += price * num;
+        });
+        $('.shopcart-total span').text(total.toFixed(2));
+        $('.shopcart-sum').text(sum);
+      }
+      // 减少购买数量
+      $('.shopcart-num-sub').click(function() {
+        var id =  $(this).parent().find('.shopcart-id');
+        var num = $(this).parent().find('.shopcart-num');
+        var n = parseInt(num.val());
+        if (n <= 1) {
+          return false;
+        }
+        num.val(n - 1);
+        Common.editCart(id.val(), n - 1);
+        total();
+      });
+      // 增加购买数量
+      $('.shopcart-num-add').click(function() {
+        var id =  $(this).parent().find('.shopcart-id');
+        var num = $(this).parent().find('.shopcart-num');
+        var stock = $(this).parent().find('.shopcart-stock');
+        var n = parseInt(num.val());
+        if (n >= parseInt(stock.val())) {
+          alert('库存不足！');
+          return false;
+        }
+        num.val(n + 1);
+        Common.editCart(id.val(), n + 1);
+        total();
+      });
+      // 自动纠正购买数量
+      $('.shopcart-num').keyup(function() {
+        var stock = $(this).parent().find('.shopcart-stock').val();
+        var n = parseInt($(this).val());
+        if (n < 1 || n !== n) {
+          $(this).val(1);
+        } else if (n > stock) {
+          $(this).val(stock);
+        }
+        total();
+      });
+      $('.shopcart-num').blur(function() {
+        var id =  $(this).parent().find('.shopcart-id').val();
+        var n = $(this).val();
+        Common.editCart(id, n);
+        total();
+      });
+      // 从购物车删除
+      $('.shopcart-del').click(function() {
+          var id = $(this).parents().find('.shopcart-id').val();
+          $(this).parents('.shopcart-item').remove();
+          Common.editCart(id, 0);
+          total();
+      });
+    }
+  })();
+</script>

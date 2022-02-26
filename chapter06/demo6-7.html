@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>JSONP</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <script>
+        var func = function(data) {
+            console.log(data);
+        };
+        $.getJSON('http://localhost/chapter06/jsonp.php?callback=?', func);
+        $.getJSON('http://localhost/chapter06/jsonp.php', func);
+    </script>
+  </body>
+</html>

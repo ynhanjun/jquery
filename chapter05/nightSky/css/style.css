@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+div.sky {
+    margin: 0 auto;
+    width: 920px;
+    height: 450px;
+}
+.wrap {
+    display: none;
+}
+div .starWrap {
+    position: absolute;
+    top: 0;
+    background: pink;
+    width: 920px;
+}
+div .starWrap img {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    display: none;
+}
+div .starWrap img:nth-child(2) {
+    position: absolute;
+    top: 50px;
+    left: 680px;
+}
+div .starWrap img:nth-child(3) {
+    position: absolute;
+    top: 80px;
+    left: 180px;
+}
+div .starWrap img:nth-child(4) {
+    position: absolute;
+    top: 280px;
+    left: 180px;
+}
+div .starWrap img:nth-child(5) {
+    position: absolute;
+    top: 180px;
+    left: 380px;
+}
+div .starWrap img:nth-child(6) {
+    position: absolute;
+    top: 110px;
+    left: 480px;
+}

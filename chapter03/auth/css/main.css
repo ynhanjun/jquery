@@ -1,0 +1,21 @@
+/*设置最外层div的样式*/
+#contains{
+    margin-left: 500px;
+    margin-top: 20px;
+    background-color: #999999
+}
+/*设置secect选择框的样式*/
+select{
+    float: left;
+    width: 60px;
+    height: 100px;
+}
+/*设置用来包裹按钮的div的样式*/
+#btnDv{
+    width: 50px;
+    float: left;
+}
+/*设置按钮的样式*/
+#btnDv>input{
+    width: 50px;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>网上商城</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/art-template-4.12.1/template-web.js"></script>
+    <script src="js/config.js"></script>
+  </head>
+  <body>
+    <!-- 顶部导航栏-->
+    <div class="top">
+      <div class="wrap">
+        <ul><li>收藏本站</li><li>关注本站</li></ul>
+        <ul class="top-right">
+          <li>您好，欢迎来到网上商城！[<a href="#">登录</a>][<a href="#">免费注册</a>]</li>
+          <li class="top-line">|</li><li><a href="#">我的订单</a></li>
+          <li class="top-line">|</li><li><a href="#">会员中心</a></li>
+          <li class="top-line">|</li><li><a class="pjax" href="cart.html" >我的购物车</a></li>
+          <li class="top-line">|</li><li>联系客服</li>
+        </ul>
+      </div>
+    </div>
+    <!-- 头部 -->
+    <div class="header">
+      <div class="wrap">
+        <a class="pjax header-logo" href="index.html"><img src="img/logo.png" alt="在线商城"></a>
+        <div class="header-search">
+          <input type="text" class="header-search-text">
+          <input class="header-search-btn" type="button" value="搜索">
+          <p class="header-search-hot">热门搜索：PHP培训　专业教材　智能手机　平板电脑</p>
+        </div>
+        <div class="header-info">
+          <a href="#">会员中心</a>
+          <a class="pjax" href="cart.html">去购物车结算</a>
+        </div>
+      </div>
+    </div>
+    <!-- 主导航栏 -->
+    <div class="nav">
+      <div class="wrap">
+        <div id="category_show" class="nav-category">
+          <div class="nav-category-tl"><a class="pjax" href="find-0.html">全部商品分类</a></div>
+          <div id="category_list" class="category"></div>
+          <script id="category_list_tpl" type="text/html">  
+            {{each item v1}}
+            {{if v1.parent_id === 0}}
+            <div class="category-item">
+              <div class="category-main">
+                <a class="pjax" href="find-{{v1.id}}.html">{{v1.name}}</a>
+              </div>
+              <div class="category-sub" style="display:none;">
+                {{each item v2}}
+                {{if v2.parent_id === v1.id}}
+                <dl>
+                  <dt><a class="pjax" href="find-{{v2.id}}.html">{{v2.name}}</a></dt>
+                  <dd>
+                    {{each item v3}}
+                    {{if v3.parent_id === v2.id}}
+                    <a class="pjax" href="find-{{v3.id}}.html">{{v3.name}}</a>
+                    {{/if}}
+                    {{/each}}
+                  </dd>
+                </dl>
+                {{/if}}
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+            {{/each}}
+          </script>
+        </div>
+        <ul><li>服装城</li><li>特色购物</li><li>优惠促销</li><li>限时秒杀</li><li>品牌专区</li><li>服务中心</li></ul>
+      </div>
+      <div class="nav-line"></div>
+    </div>
+    <!-- 内容区域 -->
+    <div class="content">
+      <div class="wrap">
+        <div id="content"></div>
+      </div>
+    </div>
+    <div class="service">
+      <div class="wrap">
+        <ul><li>购物指南</li><li>配送方式</li><li>支付方式</li><li>售后服务</li><li>特色服务</li><li>网络服务</li></ul>
+      </div>
+    </div>
+    <div class="footer">在线商城·本项目仅供学习使用</div>
+    <script src="js/common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<div class="crumbs"></div>
+<script id="crumbs_tpl" type="text/html">
+  <a class="pjax" href="index.html">首页</a>
+  {{each item v}}
+    <i></i><a class="pjax" href="find-{{v.id}}.html">{{v.name}}</a>
+  {{/each}}
+</script>
+<div class="find">
+  <div class="find-ad">
+    <div class="find-ad-title">相关商品推荐</div>
+    <div class="find-ad-content"></div>
+    <script id="find_ad_tpl" type="text/html">
+      {{each item v}}
+      <ul class="find-ad-item">
+        <li><a href="item-{{v.id}}.html" target="_blank"><img src="{{v.pic}}" alt="{{v.title}}"></a></li>
+        <li class="find-ad-name"><a href="item-{{v.id}}.html" target="_blank">{{v.title}}</a></li>
+        <li class="find-ad-price">￥{{v.price}}</li>
+      </ul>
+      {{/each}}
+    </script>
+  </div>
+  <div class="find-ls">
+    <ul class="selector">
+      <li class="selector-title">商品列表</li>
+      <li class="selector-category"></li>
+      <script id="selector_category_tpl" type="text/html">
+        {{if item.length > 0}}
+        <dl>
+          <dt>分类：</dt>
+          <dd>
+            {{each item v}}
+            <a class="pjax" href="find-{{v.id}}.html">{{v.name}}</a>
+            {{/each}}
+          </dd>
+        </dl>
+        {{/if}}
+      </script>
+      <li>
+        <dl>
+          <dt>价格：</dt>
+          <dd class="selector-price"></dd>
+          <script id="selector_price_tpl" type="text/html">
+            <a href="#" data-param="0-0">全部</a>
+            {{each item v}}
+            <a href="#" data-param="{{v}}">{{v}}</a>
+            {{/each}}
+          </script>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt>排序：</dt>
+          <dd class="selector-sort">
+            <a href="#" data-param="id-desc">最新上架</a>
+            <a href="#" data-param="price-asc">价格升序</a>
+            <a href="#" data-param="price-desc">价格降序</a>
+          </dd>
+        </dl>
+      </li>
+    </ul>
+    <div class="find-item"></div>
+    <script id="find_item_tpl" type="text/html">
+      {{each item v}}
+      <ul>
+        <li><a href="item-{{v.id}}.html" target="_blank"><img src="{{v.pic}}" alt="{{v.title}}"></a></li>
+        <li class="find-item-name"><a href="item-{{v.id}}.html" target="_blank">{{v.title}}</a></li>
+        <li class="find-item-price">￥{{v.price}}</li>
+      </ul>
+      {{/each}}
+    </script>
+    <div class="pagelist">
+      <span class="pagelist-first pagelist-btn">首页</span>
+      <span class="pagelist-prev pagelist-btn">上一页</span>
+      <div class="pagelist-nav"></div>
+      <span class="pagelist-next pagelist-btn">下一页</span>
+      <span class="pagelist-last pagelist-btn">尾页</span>
+    </div>
+    <script src="js/jquery.page.js"></script>
+  </div>
+</div>
+<script>
+  (function() {
+    var params = {price_max: 0, price_min: 0, sort: 'id-desc', cid: Common.id, page: 1, pagesize: 20};
+    // 商品分类面包屑导航
+    $.get(Config.api + 'categories?view=crumbs&id=' + params.cid, function(data) {
+      $('.crumbs').html(template('crumbs_tpl', {item: data}));
+    });
+    var isFirst = true;
+    loadData();
+    function loadData() {
+      // 请求列表数据
+      $.get(Config.api + 'items', params, function(data) {
+        Common.itemPicPath(data.item);
+        $('.find-item').html(template('find_item_tpl', {item: data.item}));
+        if (isFirst) {
+          isFirst = false;
+          firstLoadData(data);
+        }
+      });
+    }
+    function firstLoadData(data) {
+      // 推荐商品
+      Common.itemPicPath(data.recommend);
+      $('.find-ad-content').html(template('find_ad_tpl', {item: data.recommend}));
+      // 分类
+      $('.selector-category').html(template('selector_category_tpl', {id: data.cid ,item: data.category}));
+      // 价格
+      $('.selector-price').html(template('selector_price_tpl', {item: priceDist(data.priceMax, 5)})).find('a:first').addClass('selector-curr');
+      // 排序
+      $('.selector-sort a:first').addClass('selector-curr');
+      // 分页
+      var pagelist = $('.pagelist').page({total: data.total, size: params.pagesize});
+      pagelist.click(function(page) {
+        params.page = page;
+        loadData();
+        $('html,body').animate({scrollTop: $('#content').offset().top}, 500);
+      });
+    }
+    function priceDist(max, count) {
+      if (max <= 0) {
+        return '';
+      }
+      var size = Math.ceil(max / Math.max(count, 1));
+      var end = size, start = 0, rst = [];
+      for (var i = 0; i < count; ++i) {
+        rst.push(start + '-' + end);
+        start = end + 1;
+        end += size;
+      }
+      return rst;
+    }
+    $('.selector-price').on('click', 'a', function() {
+      var param = $(this).attr('data-param');
+      params.price_max = param[0];
+      params.price_min = param[1];
+      loadData();
+      $(this).addClass('selector-curr').siblings().removeClass('selector-curr');
+      return false;
+    });
+    $('.selector-sort a').click(function() {
+      params.sort = $(this).attr('data-param');
+      loadData();
+      $(this).addClass('selector-curr').siblings().removeClass('selector-curr');
+      return false;
+    });
+  })();
+</script>

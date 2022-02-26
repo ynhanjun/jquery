@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jQuery对象与DOM对象的转换</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div id="myId">test</div>
+    <script>
+        // jQuery对象不存在innerHTML属性，访问结果为undefined
+        var str1 = $('div').innerHTML;
+        console.log(str1);
+        // DOM对象不存在 html()方法，调用不存在的方法会出错
+        var str2 = document.getElementById('myId').html();
+        console.log(str2);
+    </script>
+  </body>
+</html>

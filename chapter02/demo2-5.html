@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>内容过滤选择器</title>
+    <style>
+        div {
+            width: 200px;
+            height: 30px;
+            margin: 5px;
+            border: solid 1px black;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>我是div元素的文本</div>
+    <div>我也是div元素的文本</div>
+    <div><span>我是div内span元素的文本</span></div>
+    <div></div>
+    <script>
+        $('div:contains("也")').css('background', 'pink');
+        $('div:has(span)').css('background', 'pink');
+        $('div:empty').css('background', 'pink');
+        $('div:parent').css('background', 'pink');
+    </script>
+  </body>
+</html>

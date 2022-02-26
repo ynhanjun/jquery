@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>遍历节点</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li>刘三</li>
+      <li>赵四</li>
+      <li>王小五</li>
+    </ul>
+    <script>
+        $('li').each(function(index) {
+            if (index === 1) {
+                console.log($(this).text());
+            }
+        });
+    </script>
+  </body>
+</html>

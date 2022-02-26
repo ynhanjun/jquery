@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jQuery的静态方法</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <script>
+        var str = '  test  ';
+        // 调用静态方法trim()过滤字符串两端的空白字符
+        var result = '[' + $.trim(str) + ']';
+        alert(result);		// 输出结果：[test]
+    </script>
+  </body>
+</html>

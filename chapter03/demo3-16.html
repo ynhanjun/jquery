@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>替换节点</title>
+    <style>
+        div {
+            width: 200px;
+            height: 50px;
+            background-color: #edbc80;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" id="btn" value="替换元素">
+    <div id="dv">没有伞的孩子</div>
+    <div id="dv1">要努力奔跑</div>
+    <script>
+        $('#btn').click(function () {
+            $('#dv').replaceWith('<div>世界这么大</div>');
+            $('<div>我想去看看</div>').replaceAll('#dv1');
+        });
+    </script>
+  </body>
+</html>

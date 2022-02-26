@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>表单过滤选择器</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <form id="myForm">
+      昵称：<input type="text" value="text"><br>
+      密码：<input type="password" value="password"><br>
+      性别：<input type="radio"><span>男</span>
+            <input type="radio"><span>女</span><br>
+      爱好：<input type="checkbox"><span>游泳</span>
+            <input type="checkbox"><span>旅行</span><br>
+      照片1:<img src="img/1.jpg" width="100"><br>
+      照片2：<input type="image" src="img/1.jpg" width="150"><br>
+      说明：<textarea></textarea><br>
+      <input type="reset" value="重置">
+      <input type="button" value="保存">
+      <input type="submit" value="提交">
+    </form>
+    <script>
+        $('#myForm :button').hide();
+        //$('#myForm :image').hide();
+        //$('#myForm :input').hide();
+        //$('input:checked').hide();
+    </script>
+  </body>
+</html>

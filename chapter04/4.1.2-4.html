@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>页面加载事件</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $(window).load(function() {
+            console.log('页面加载后要执行的代码');
+        });
+    </script>
+  </head>
+  <body>
+    <img src="star/img/star.gif" alt="">
+    <script>
+        $('img').load(function() {
+            console.log('元素内容加载完毕后要执行的代码');
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>图书管理系统</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <input type="text" class="search-input"><button class="search">查询</button><button class="add">新增</button>
+    </div>
+    <div class="booklist">
+      <table>
+        <tr>
+          <th data-name="id">图书编号</th>
+          <th data-name="title">图书名称</th>
+          <th data-name="author">图书作者</th>
+          <th data-name="publisher">出版社</th>
+          <th data-name="pages">总页数</th>
+          <th data-name="pubdate">出版年份</th>
+          <th data-name="price">价格</th>
+          <th>操作</th>
+        </tr>
+      </table>
+    </div>
+    <div class="edit" style="display:none">
+      <div class="edit-bg"></div>
+      <div class="edit-center">
+        <div class="edit-title">图书信息编辑</div>
+        <p><span>图书编号：</span><input type="text" name="id"></p>
+        <p><span>图书名称：</span><input type="text" name="title"></p>
+        <p><span>图书作者：</span><input type="text" name="author"></p>
+        <p><span>出版社：</span><input type="text" name="publisher"></p>
+        <p><span>总页数：</span><input type="text" name="pages"></p>
+        <p><span>出版年份：</span><input type="text" name="pubdate"></p>
+        <p><span>价格：</span><input type="text" name="price"></p>
+        <p><button class="edit-save">提交</button><button class="edit-cancel">取消</button></p>
+      </div>
+    </div>
+  </div>
+  <script src="js/operate.js"></script>
+</body>
+</html>

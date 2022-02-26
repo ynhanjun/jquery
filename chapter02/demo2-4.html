@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>可见性过滤选择器</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <p id="dis">显示文本1</p>
+    <p id="vis">显示文本2</p>
+    <input type="hidden" value="隐藏文本域">
+    <script>
+        // 获取所有可见元素，添加背景色
+        $(':visible').css('backgroundColor', 'yellow');
+        // 在控制台输出元素集合
+        console.log($(':visible'));
+    </script>
+    <script>
+        // 获取显示的p元素，设置两种不同的隐藏方式
+        $('#dis:visible').css('display', 'none');
+        $('#vis:visible').css('visibility', 'hidden');
+        // 获取隐藏的元素，在控制台输出元素集合
+        console.log('隐藏的p元素：');
+        console.log($('p:hidden'));
+        console.log('隐藏域input：');
+        console.log($('input:hidden'));
+    </script>
+  </body>
+</html>

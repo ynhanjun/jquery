@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>显示上传进度</title>
+    <style>
+        .info {
+            color: green;
+        }
+        .progress {
+            width: 100%;
+            height: 4px;
+            border: 1px solid #4cae4c;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+       .progress .progress-bar {
+           width: 0px;
+           height: 100%;
+           background: #4cae4c;
+       }
+    </style>
+    <link rel="stylesheet" href="webuploader-0.1.5/webuploader.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="webuploader-0.1.5/webuploader.html5only.min.js"></script>
+  </head>
+  <body>
+    <div class="uploadimg">
+      <div class="list"></div>
+      <div id="file_picker"></div>
+    </div>
+    <script>
+        var uploader = WebUploader.create({
+            auto: true,                  // 选完文件后，是否自动上传
+            server: 'fileupload.php',    // 文件接收服务端
+            pick: {                      // 指定选择按钮的容器
+                id: '#file_picker',
+                innerHTML: '单击上传文件',
+                multiple: false
+            }
+        });
+        // 上传文件被加入到队列后触发
+        uploader.on('fileQueued', function(file) { 
+            $('.list').append(
+                '<div id="' + file.id + '">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '</div>');
+        });
+        // 上传过程中触发，并且携带上传的进度值
+        uploader.on('uploadProgress', function(file, percentage) {
+            var li = $('#' + file.id);
+            var	percent = li.find('.progress .progress-bar');
+            if(!percent.length) {    // 避免重复创建
+                percent = $('<div class="progress">' +
+                    '<div class="progress-bar"></div>' +
+                    '</div>').appendTo(li).find('.progress-bar');
+            }
+            percent.css('width', percentage * 100 + '%');
+        });
+        uploader.on('uploadSuccess', function(file) {
+            console.log(file);
+            alert('上传成功');
+        });
+        uploader.on('uploadError', function(file) {
+            console.log(file);
+            alert('上传失败');
+        });
+        uploader.on('uploadComplete', function(file) {
+            $('#' + file.id).find('.progress').fadeOut();
+        });
+    </script>
+  </body>
+</html>

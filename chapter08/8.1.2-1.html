@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Resizable组件</title>
+    <style>
+        #demo {
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+        }
+    </style>
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div id="demo">来，调整div的大小</div>
+    <script>
+        $('#demo').resizable({
+            minWidth: 50,
+            maxWidth: 300
+        });
+    </script>
+  </body>
+</html>

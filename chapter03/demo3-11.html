@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>操作元素内容</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 200px;
+            height: 100px;
+            background: #27d1ff;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="text" class="txt">
+    <input type="button" value="按钮" class="btn">
+    <div></div>
+    <script>
+        $('.btn').click(function() {
+            $('div').text($('.txt').val());
+            // $('div').html($('.txt').val());
+            $('.txt').val('');
+        });
+    </script>
+  </body>
+</html>

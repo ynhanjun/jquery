@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>遍历节点</title>
+    <style>
+        ul li {
+            width: 60px;
+            height: 100px;
+            background-color: green;
+            list-style-type: none;
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <ul id="uu">
+      <li>1</li><li>2</li><li>3</li>
+      <li>4</li><li>5</li><li>6</li>
+      <li>7</li>
+    </ul>
+    <script>
+        $('#uu>li').each(function(index, element) {
+            // 改变每个元素的透明度
+            $(element).css('opacity', (index + 1) / 10);
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>高亮显示图片</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <ul>
+        <li><a href="#"><img src="img/01.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/02.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/03.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/04.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/05.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/06.jpg" alt=""></a></li>
+      </ul>
+    </div>
+    <script>
+        $('.wrap>ul>li').mouseover(function () {
+            $(this).siblings('li').css('opacity', 0.5);
+            $(this).css('opacity', 1);
+        });
+        $('.wrap>ul>li').mouseout(function () {
+            $(this).parent().children('li').css('opacity', 1);
+        });
+    </script>
+  </body>
+</html>

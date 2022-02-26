@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>嵌入子模板</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="template-web.js"></script>
+  </head>
+  <body>
+    <div id="show"></div>
+    <script id="test" type="text/html">
+      <h4>{{title}}</h4>
+      {{include 'tpl'}}
+    </script>
+    <script id="tpl" type="text/html">
+      <ul>
+        {{each list v i}}
+          <li>第 {{i + 1}}个 ：{{v}}</li>
+        {{/each}}
+      </ul>
+    </script>
+    <script>
+        var data = {
+            title: '嵌入子模板',
+            list: ['movie', 'variety', 'animation']
+        };
+        var con = template('test', data);
+        $('#show').html(con);
+    </script>
+  </body>
+</html>

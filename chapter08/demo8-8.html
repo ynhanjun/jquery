@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>accordion组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div class="easyui-accordion" style="width:500px;" data-options="multiple:true">
+      <div style="overflow:auto;padding:10px;" data-options="title:'jQuery',iconCls:'icon-ok'">
+        jQuery......
+      </div>
+      <div title="Java" style="padding:10px;">
+        Java......
+      </div>
+      <div title="PHP" style="padding:10px;">
+        PHP......
+      </div>
+      <div title="Python" style="padding:10px;">
+        Python......
+      </div>
+    </div>
+    <script>
+        $(function() {
+            $('#tabs').tabs('add', {    // 添加一个新的选项卡
+                title: 'new tab',
+                index: 2
+            });
+            $('#tabs').tabs({
+                onSelect: function(title, index) {    // 添加onSelect事件
+                    alert(title + '-' + index);
+                }
+            });
+        });
+    </script>
+  </body>
+</html>

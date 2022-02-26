@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>快速体验编辑器</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="ueditor/ueditor.config.js"></script>
+    <script src="ueditor/ueditor.all.min.js"></script>
+  </head>
+  <body>
+    <div id="content" style="width:500px;height:200px;"></div>
+    <p><button id="btn1">获取编辑器中的内容getContent()</button></p>
+    <p><button id="btn2">获取编辑器中的内容getPlainTxt()</button></p>
+    <p><button id="btn3">获取编辑器中的内容getContentTxt()</button></p>
+    <script>
+        // 定制工具栏
+        UEDITOR_CONFIG['toolbars'] = [['fullscreen', 'source', '|',
+            'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough',
+            'forecolor', 'backcolor', 'fontfamily', 'fontsize'
+        ]];
+        // 实例化编辑器
+        var ue = UE.getEditor('content');
+        ue.ready(function() {
+            // 设置编辑器的默认值 
+            ue.setContent('<i>请在此处编写内容!</i>');
+            // 为编辑器追加内容
+            ue.setContent('<p>雄关漫道真如铁，而今迈步从头越。</p>', true);
+        });
+        $('#btn1').click(function() {
+            var html = ue.getContent();
+            alert(html);
+        });
+        $('#btn2').click(function() {
+            var html = ue.getPlainTxt();
+            alert(html);
+        });
+        $('#btn3').click(function() {
+            var html = ue.getContentTxt();
+            alert(html);
+        });
+    </script>
+  </body>
+</html>

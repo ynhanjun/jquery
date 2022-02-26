@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>权限选择</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+  <div id="contains">
+    <select multiple="multiple"  id="se1">
+      <option>提交</option>
+      <option>删除</option>
+       <option>修改</option>
+      <option>查询</option>
+      <option>发布</option>
+    </select>
+    <div id="btnDv">
+      <input type="button" name="name1" value=">" id="toRight">
+      <input type="button" name="name2" value="<" id="toLeft">
+      <input type="button" name="name3" value=">>" id="toAllRight">
+      <input type="button" name="name4" value="<<" id="toAllLeft">
+    </div>
+    <select multiple="multiple" id="se2"></select>
+  </div>
+  <script>
+    // 添加选中权限
+    $('#toRight').click(function() {
+        $('#se2').append($('#se1>option:selected'));
+    });
+    // 删除选中权限
+    $('#toLeft').click(function() {
+        $('#se1').append($('#se2>option:selected'));
+    });
+    // 添加所有权限
+    $('#toAllRight').click(function() {
+        $('#se2').append($('#se1>option'));
+    });
+    //删除所有权限
+    $('#toAllLeft').click(function() {
+        $('#se1').append($('#se2>option'));
+    });
+  </script>
+</body>
+</html>

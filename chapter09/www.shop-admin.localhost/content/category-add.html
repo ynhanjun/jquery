@@ -1,0 +1,75 @@
+<div style="padding:10px">
+  <form id="category_add_form">
+    <table cellpadding="5" width="100%">
+      <tr>
+        <td>层次：</td>
+        <td>
+          <input id="category_swt" class="easyui-switchbutton" name="parent_id">
+          <span id="category_name" style="vertical-align:middle;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>名称：</td>
+        <td><input class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'length[0,20]',width:'280px'"></td>
+      </tr>
+      <tr>
+        <td>排序：</td>
+        <td><input class="easyui-numberbox" type="text" name="sort" data-options="required:true,min:-99999,max:99999,precision:0"></td>
+      </tr>
+      <tr>
+        <td>状态：</td>
+        <td>
+          <select class="easyui-combobox" name="status" data-options="width:'80px',editable:false">
+            <option value="1">正常</option>
+            <option value="2">下架</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <div style="padding:5px;text-align:center">
+    <a id="category_add" class="easyui-linkbutton" data-options="width:'50px'" href="#">提交</a>
+    <a id="category_reset" class="easyui-linkbutton" data-options="width:'50px'" href="#">重置</a>
+  </div>
+</div>
+<script>
+  (function () {
+    var list = $('#category_list');
+    var cname = $('#category_name');
+    var cid = 0;
+    var node = list.treegrid('getSelected');
+    if (node) {
+      cid = node.id;
+      cname.text(node.name);
+    }
+    $('#category_swt').switchbutton({
+      onText: '自定义',
+      offText: '最顶层',
+      width: '80px',
+      checked: cid !== 0,
+      disabled: cid === 0,
+      value: cid,
+      onChange: function (checked) {
+        cname.toggle(checked);
+      }
+    });
+    var addForm = $('#category_add_form');
+    $('#category_add').click(function () {
+      if (!addForm.form('validate')) {
+        $.messager.alert('提示', '表单还未填写完成！');
+        return;
+      }
+      $.post(Config.api + 'categories', addForm.serialize(), function (data) {
+        if (node && list.treegrid('isLeaf', cid)) {
+          node.state = 'closed';
+          list.treegrid('refresh', node.id);
+        }
+        list.treegrid('reload', cid);
+        $('#add_window').window('close');
+      });
+    });
+    $('#category_reset').click(function () {
+      addForm.form('reset');
+    });
+  })();
+</script>

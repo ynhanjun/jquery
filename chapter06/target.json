@@ -1,0 +1,15 @@
+[
+    {
+        "name": "JavaScript高级程序设计",
+        "author": "扎卡斯",
+        "price": "¥78.20"
+    }, {
+        "name": "HTML5移动Web开发",
+        "author": "黑马程序员",
+        "price": "¥39.50"
+    }, {
+        "name": "MongoDB设计模式",
+        "author": "科普兰",
+        "price": "¥28.40"
+    }
+]

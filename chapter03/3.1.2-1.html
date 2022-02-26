@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>操作元素类</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div></div>
+    <script>
+        $('div').addClass('c');              // 添加单个类“c”
+        $('div').addClass('c1 c2 c3');       // 添加多个类“c1”、“c2”和“c3”
+        $('div').removeClass();              // 移除所有类
+        $('div').removeClass('c1');          // 移除单个类
+        $('div').removeClass('c1 c2 c3');    // 移除多个类
+    </script>
+  </body>
+</html>

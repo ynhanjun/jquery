@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>通过函数设置样式</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div></div>
+    <script>
+        var div = $('div');
+        div.addClass('c1');               // 添加单个类
+        console.log(div[0].outerHTML);    // 输出结果：<div class="c1"></div>
+        div.addClass('c2 c3');            // 移除多个类
+        console.log(div[0].outerHTML);    // 输出结果：<div class="c1 c2 c3"></div>
+        div.removeClass('c1');            // 移除单个类
+        console.log(div[0].outerHTML);    // 输出结果：<div class="c2 c3"></div>
+        div.removeClass();                // 移除全部类
+        console.log(div[0].outerHTML);    // 输出结果：<div class=""></div>
+    </script>
+  </body>
+</html>

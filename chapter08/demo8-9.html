@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>accordion组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+    <div class="easyui-panel" title="Menu" style="width:150px;">
+      <div class="easyui-menu" data-options="inline:true" style="width:100%">
+        <div onclick="javascript:alert('new')">New</div>
+        <div>
+          <span>Open</span>
+          <div style="width:150px;">
+            <div><b>JavaScript</b></div>
+            <div>jQuery</div>
+            <div>EasyUI</div>
+          </div>
+        </div>
+        <div data-options="iconCls:'icon-save'">Save</div>
+        <div data-options="iconCls:'icon-print',disabled:true">Print</div>
+        <div class="menu-sep"></div>
+        <div>Exit</div>
+      </div>
+    </div>
+  </body>
+</html>

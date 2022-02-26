@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>获取和设置元素属性</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="按钮一" class="btn1">
+    <input type="button" value="按钮二" class="btn2">
+    <script>
+        $('.btn1').click(function() {
+            console.log($('.btn2').attr('type'));
+            $('.btn2').attr('type', 'checkbox');
+            // $('.btn2').attr({type: 'text', value: '我是文本框'});
+        });
+    </script>
+  </body>
+</html>

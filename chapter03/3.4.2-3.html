@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>after()方法</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>序列号1</li>
+        <li>序列号2</li>
+        <li>序列号3</li>
+      </ul>
+    </nav>
+    <script>
+        var $p = '<p>插入的节点</p>';
+        // 将新创建的p节点插入到ul元素之后
+        $('ul').after($p);
+    </script>
+  </body>
+</html>

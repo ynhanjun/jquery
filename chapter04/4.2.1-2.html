@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>绑定事件</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input id="btn" type="button" value="按钮">
+    <script>
+        $('#btn').on({
+            click: function() {
+                alert('我被单击了');
+            },
+            mouseover: function() {
+                $(this).css('backgroundColor', 'red');
+            }
+        });
+    </script>
+  </body>
+</html>

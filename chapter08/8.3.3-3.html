@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>列表分类与过滤</title>
+    <link rel="stylesheet" href="mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  </head>
+  <body>
+    <ul data-role="listview" data-inset="true">
+      <li data-role="list-divider">图书</li>
+      <li><a href="#">数学书</a></li>
+      <li><a href="#">语文书</a></li>
+      <li data-role="list-divider">电子</li>
+      <li><a href="#">智能手机</a></li>
+      <li><a href="#">平板电脑</a></li>
+    </ul>
+    <div style="height:30px;background:#fff;"></div>
+    <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
+      <li><a href="#">书包</a></li>
+      <li><a href="#">书籍</a></li>
+      <li><a href="#">治理</a></li>
+      <li><a href="#">治法</a></li>
+    </ul>
+  </body>
+</html>

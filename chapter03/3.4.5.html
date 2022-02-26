@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>替换节点</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <p class="p1"></p>
+    <p class="p2"></p>
+    <script>
+        $('.p1').replaceWith('<span>替换喽</span>');      // 实现方式1
+        $('<span>替换喽</span>').replaceAll('.p2');       // 实现方式2
+    </script>
+  </body>
+</html>

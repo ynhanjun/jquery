@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>layout组件</title>
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui-1.5.4.2/themes/icon.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="easyui-1.5.4.2/jquery.easyui.min.js"></script>
+    <script src="easyui-1.5.4.2/locale/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body class="easyui-layout">
+    <div style="height:50px" data-options="region:'north'">
+      显示LOGO等内容
+    </div>
+    <div style="height:50px;" data-options="region:'south',split:true">
+      显示版权等内容
+    </div>
+    <div style="width:250px;" data-options="region:'east',split:true,title:'East',collapsible:false">
+      显示动态新闻等内容
+    </div>
+    <div style="padding:10px" data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+      显示主要内容
+    </div>
+  </body>
+</html>

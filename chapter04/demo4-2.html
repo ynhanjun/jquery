@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>焦点事件</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    输入框: <input type="text">
+    <script>
+        // 获得焦点
+        $('input').focus(function() {
+            $('input').css('background-color', 'gray');
+        });
+        // 失去焦点
+        $('input').blur(function() {
+            $('input').css('background-color', 'white');
+        });
+    </script>
+  </body>
+</html>

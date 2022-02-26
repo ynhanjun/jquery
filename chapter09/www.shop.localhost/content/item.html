@@ -1,0 +1,136 @@
+<div class="crumbs"></div>
+<script id="crumbs_tpl" type="text/html">
+  <a class="pjax" href="index.html">首页</a>
+  {{each item v}}
+    <i></i><a class="pjax" href="find-{{v.id}}.html">{{v.name}}</a>
+  {{/each}}
+</script>
+<div class="item">
+  <div class="album"></div>
+  <script id="album_tpl" type="text/html">
+    <div class="album-mid">
+      <img class="album-mid-img" alt="预览图">
+      <div class="album-mask"></div>
+    </div>
+    <div class="album-small">
+      <div class="album-btn-left"></div>
+      <div class="album-list">
+        <ul>
+          {{each item v}}
+          <li><img src="{{v}}" alt="预览图"></li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="album-btn-right"></div>
+    </div>
+    <div class="album-big"><img class="album-big-img" alt="预览图"></div>
+  </script>
+  <script src="js/jquery.album.js"></script>
+  <div class="item-info"></div>
+  <script id="item_info_tpl" type="text/html">
+    <h1>{{item.title}}</h1>
+    <div class="item-info-sell">{{item.sell_point}}</div>
+    <table>
+      <tr><th>售 价：</th><td><span class="item-info-price">￥{{item.price}}</span></td></tr>
+      <tr><th>累计销量：</th><td>0</td></tr>
+      <tr><th>评 价：</th><td>0</td></tr>
+      <tr><th>配送至：</th><td>北京（免运费）</td></tr>
+      <tr>
+        <th>购买数量：</th>
+        <td>
+          <input type="button" value="-" class="item-num-sub">
+          <input type="text" value="1" id="item_num" class="item-num">
+          <input type="button" value="+" class="item-num-add">
+          （库存：<span class="item-num-stock">{{item.num}}</span>）
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="item-info-button">
+          <a href="#" class="light">立即购买</a>
+          <a href="#" id="cart_add">加入购物车</a>
+        </td>
+      </tr>
+    </table>
+  </script>
+  <div class="item-line"></div>
+  <div class="item-ads">
+    <div class="item-ads-title">相关商品推荐</div>
+    <div class="item-ads-content"></div>
+    <script id="item_ads_tpl" type="text/html">
+      {{each item v}}
+      <ul class="item-ads-item">
+      <li>
+        <a href="item-{{v.id}}.html" target="_blank">
+          <img src="{{v.pic}}" alt="{{v.title}}">
+        </a>
+      </li>
+      <li class="item-ads-name"><a href="{{v.pic}}" target="_blank">{{v.title}}</a></li>
+      <li class="item-ads-price">￥{{v.price}}</li>
+      </ul>
+      {{/each}}
+    </script>
+  </div>
+  <div class="item-desc">
+    <div class="item-desc-title">商品详情</div>
+    <div class="item-desc-content"></div>
+  </div>
+  <div class="item-line"></div>
+</div>
+<script>
+  (function() {
+    var id = Common.id;
+    // 查询商品数据
+    $.get(Config.api + 'items/' + id, function(data) {
+      $.get(Config.api + 'categories?view=crumbs&id=' + data.cid, function(data) {
+        $('.crumbs').html(template('crumbs_tpl', {item: data}));
+      });
+      $('.item-info').html(template('item_info_tpl', {item: data}));
+      $('.item-desc-content').html(data.content);
+      Common.itemAlbumPath(data.album);
+      $('.album').html(template('album_tpl', {item: data.album})).album();
+      Common.itemPicPath(data.recommend);
+      $('.item-ads-content').html(template('item_ads_tpl', {item: data.recommend}));
+      loadSuccess();
+    }).fail(function() {
+       alert('商品数据不存在！');
+       location.href = 'index.html';
+    });
+    function loadSuccess() {
+      var num = $('#item_num');
+      var stock = parseInt($('.item-num-stock').text());
+      // 减少购买数量
+      $('.item-num-sub').click(function() {
+        var n = parseInt(num.val());
+        if (n < 1) {
+          return false;
+        }
+        num.val(n - 1);
+      });
+      // 增加购买数量
+      $('.item-num-add').click(function() {
+        var n = parseInt(num.val());
+        if (n > stock) {
+          return false;
+        }
+        num.val(n + 1);
+      });
+      // 自动纠正购买数量
+      num.keyup(function() {
+        var n = parseInt($(this).val());
+        if (n < 1) {
+          $(this).val(1);
+        } else if (n > stock) {
+          $(this).val(stock);
+        }
+      });
+      // 添加到购物车 
+      $('#cart_add').click(function() {
+        // 将 商品id 和 购买数量 添加到本地存储（如果存在，则增加数量）
+        Common.addCart(id, num.val());
+        alert('商品已成功加入购物车！');
+        location.href = 'cart.html';
+        return false;
+      });
+    }
+  })();
+</script>

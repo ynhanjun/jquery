@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>offsetParent()方法</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <div>
+      <div style="position:relative">
+        <div>
+          <div id="test">test</div>
+        </div>
+      </div>
+    </div>
+    <script>
+        $('#test').offsetParent().css('background-color', 'green');
+    </script>
+  </body>
+</html>

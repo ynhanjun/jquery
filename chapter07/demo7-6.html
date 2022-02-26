@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>树图</title>
+    <script src="echarts.js"></script>
+  </head>
+  <body>
+    <div id="box" style="width:400px;height:400px;"></div>
+    <script>
+        var myChart = echarts.init(document.getElementById('box'));
+	var data = {
+            "name": "天气",
+            "children": [{
+                "name": "雪",
+                "children": [
+                    {"name": "大雪"},
+                    {"name": "中雪"},
+                    {"name": "小雪"}
+                ]
+            }, {
+                "name": "风",
+                "children": [
+                    {"name": "台风"},
+                    {"name": "暴风"},
+                    {"name": "飓风"}
+                ]
+            }, {
+                "name": "雨",
+                "children": [
+                    {"name": "暴雨"}
+                ]
+            }]
+	};
+        myChart.setOption({
+            series: [{
+                type: 'tree',
+                name: '树',
+                data: [data],
+                top: '5%',
+                left: '10%',
+                bottom: '5%',
+                symbolSize: 7,
+                label: {position: 'left'},
+                expandAndCollapse: true,
+                animationDuration: 550,
+                animationDurationUpdate: 750
+            }]
+        });
+    </script>
+  </body>
+</html>

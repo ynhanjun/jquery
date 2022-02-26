@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>extend()方法的使用</title>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <script>
+        var obj1 = {a: 1, b: 1, c: 1};
+        var obj2 = {b: 2, a: 2};
+        var obj3 = $.extend(obj1, obj2);
+        console.log(obj1);             // 输出结果：Object {a: 2, b: 2, c: 1}
+        console.log(obj2);             // 输出结果：Object {b: 2, a: 2}
+        console.log(obj3 === obj1);    // 输出结果：true
+    </script>
+  </body>
+</html>

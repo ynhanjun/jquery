@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>outerWidth()outerHeight()方法</title>
+    <style>
+        body {
+            border: 1px solid #ccc;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            background: #27d1ff;
+            padding: 10px;
+            border: 5px solid pink;
+            margin: 20px;
+        }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+  </head>
+  <body>
+    <input type="button" value="获取元素的宽高">
+    <div>你是自己人生的导演</div>
+    <script>
+        $('input').click(function() {
+            console.log($('div').outerWidth());
+            console.log($('div').outerHeight());
+            console.log($('div').outerWidth(true));
+            console.log($('div').outerHeight(true));
+        });
+    </script>
+  </body>
+</html>

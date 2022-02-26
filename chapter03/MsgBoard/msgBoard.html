@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>留言板</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+  <div id="parent">
+    <h4>留言内容：</h4>
+    <div id="box"></div>
+    <textarea id="text"></textarea><br/>
+    <input id="btn" type="button" value="发表留言">
+    <script>
+        var num = 1;
+        $('#btn').click(function() {
+            var html = '<p><span>用户' + num + '说：</span> ' + $('#text').val() + '</p>' + $('#box').html();
+            $('#box').html(html);
+            $('#text').val('');
+             ++num;		 
+        });
+    </script>
+  </div>
+</body>
+</html>

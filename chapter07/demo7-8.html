@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>快速体验WebUploader</title>
+    <link rel="stylesheet" href="webuploader-0.1.5/webuploader.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="webuploader-0.1.5/webuploader.html5only.min.js"></script>
+  </head>
+  <body>
+    <div class="uploadimg">
+      <div id="file_picker"></div>
+    </div>
+    <script>
+        var uploader = WebUploader.create({
+            auto: true,                  // 选完文件后，是否自动上传
+            server: 'fileupload.php',    // 文件接收服务端
+            pick: {                      // 指定选择按钮的容器
+                id: '#file_picker',
+                innerHTML: '单击上传文件',
+                multiple: false
+            }
+        });
+    </script>
+  </body>
+</html>
