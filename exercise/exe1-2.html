@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!-- jQuery官方提供的CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <title>exe1-2.html</title>
   </head>
   <body>
     <h2><span id="school">能源学院</span>的校训是：“明德尚能，历志笃行。”</h2>
     <div>请jQuery程序把“能源学院”替换为“云南能源职业技术学院”</div>
     <script>
-      
+      $('#school').html('云南能源职业技术学院');
     </script>
   </body>
 </html>
