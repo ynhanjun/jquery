@@ -27,7 +27,12 @@
     </ul>
     <script>
       // 请在下方添加代码，把“列表1”的内容改为和“列表2”一样。
-      
+      var lis = $('#ul1 > li');
+      var max = lis.length;
+      for(var i = max;i > 0; i--){
+        $(lis[max - i]).html('编号' + i);
+        // $()作用是把DOM对象转为jQuery对象
+      }
     </script>
   </body>
 </html>
