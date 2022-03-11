@@ -34,7 +34,11 @@
       </li>
     </ul>
     <script>
-     
+    $('.menu_head > ul').hide();
+    $('.menu_head').click(function(){
+      $(this).children('ul').show();
+      $(this).siblings('li').children('ul').hide();
+    });
     </script>
   </body>
 </html>

@@ -19,7 +19,15 @@
     </ul>
     <p>编写代码：单击课程名称后把该课程的显示颜色改为红色。</p>
     <script>
-      
+      // 给所有的课程绑定单击事件
+      $('li').click(function(){
+   
+        // 改变当前对象的文字颜色
+        $(this).css('color','red');
+
+        // 反选当前对象，把文字颜色改为黑色。
+        $(this).siblings('li').css('color','black');
+      });
     </script>
   </body>
 </html>
