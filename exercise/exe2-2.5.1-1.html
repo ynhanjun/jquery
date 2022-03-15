@@ -14,7 +14,16 @@
     <script type="text/javascript">
       // 网页上有四个段落，除第3个段落外其余段落的背景颜色改为黄色。
       // 请用多种方法实现。
-
+      $('#btn').click(function(){
+        // 1 选择多个
+        // $('.pClass1,.pClass2,.pClass4').css('background','yellow');
+        // 2 选择第3个之前和之后
+        // $('p:lt(2),p:gt(2)').css('background','yellow');
+        // 3 用索引号选择多个
+        // $('p:eq(0),p:eq(1),p:eq(3)').css('background','yellow');
+        // 4 反向选择
+        $('p:not(:eq(2))').css('background','yellow');
+      });
     </script>
   </body>
 </html>
