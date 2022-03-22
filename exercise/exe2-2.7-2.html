@@ -47,7 +47,11 @@
     </div>
     <script type="text/javascript">
       // 请在此编写代码完成46页编程题第2题的效果
-      
+      // 思路：选择偶数个修改背景颜色。
+      // 方法一
+      $('#container li:even').css('background','black');
+      // 方法二
+      // $('#container').find('li:even').css('background','green');
     </script>
   </body>
 </html>
