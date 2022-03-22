@@ -61,7 +61,14 @@
     </div>
     <script type="text/javascript">
       // 请在此编写代码完成46页编程题第1题的效果
-      
+      // 当鼠标指向菜单时工作
+      $('#menu>ul>li').mouseenter(function(){
+        $('#menu>ul>li>ul').show();
+      });
+      // 当鼠标离开菜单时工作
+      $('#menu>ul>li').mouseleave(function(){
+        $('#menu>ul>li>ul').hide();
+      });
     </script>
   </body>
 </html>
