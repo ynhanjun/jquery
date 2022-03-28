@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+      #target {
+        width: 80px;
+        height: 80px;
+        background-color: red;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 80px;
+      }
+    </style>
+    <title>exe3-3.1.4-1.html</title>
+  </head>
+  <body>
+    <div id="target">来追我！</div>
+    <script>
+      // 编写代码，移动div元素，让鼠标不能指向该元素。
+      var size = 80;
+      $("#target").mouseover(function () {
+        var winWidth = $(window).width();
+        var winHeight = $(window).height();
+        var div = $("#target");
+        var divLeft = div.offset().left;
+        var divTop = div.offset().top;
+        var ran = Math.random();
+        if (ran > 0.5) {
+          // 左右移动
+ 
+        } else {
+          // 上下移动
+ 
+        }
+        // console.log(winWidth, winHeight, divLeft, divTop);
+        
+      });
+    </script>
+  </body>
+</html>
