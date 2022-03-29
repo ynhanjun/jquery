@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <style>
       .rect {
-          width: 400px;
-          height: 300px;
-          background-color: green;
-          border-radius: 0;
+        width: 400px;
+        height: 300px;
+        background-color: green;
+        border-radius: 0;
 
-          /* 让文字左右居中 */
-          text-align:center;
-          /* 让文字上下居中 */
-          line-height:300px;
+        /* 让文字左右居中 */
+        text-align: center;
+        /* 让文字上下居中 */
+        line-height: 300px;
       }
     </style>
     <title>exe3-3.1.1-1.html</title>
@@ -23,22 +23,34 @@
   <body>
     <h3>300*400矩形的圆角度：</h3>
     <select class="radi">
-        <option value="0px">0px</option>
-        <option value="5px">5px</option>
-        <option value="20px">20px</option>
-        <option value="40px">40px</option>
-        <option value="80px">80px</option>
-        <option value="100px">100px</option>
-        <option value="150px">150px</option>
+      <option value="0px">0px</option>
+      <option value="5px">5px</option>
+      <option value="20px">20px</option>
+      <option value="40px">40px</option>
+      <option value="80px">80px</option>
+      <option value="100px">100px</option>
+      <option value="150px">150px</option>
     </select>
     <button class="btn">显示</button>
-    <div class="rect"></div>
+    <div class="rect">圆角度：0px</div>
     <script>
-        // 要求：选择不同的圆角半径后单击按钮时，
-        //       请用程序实现相应改变,并在内部
-        //       用文字进行相应说明。
+      // 要求：选择不同的圆角半径后单击按钮时，
+      //       请用程序实现相应改变,并在内部
+      //       用文字进行相应说明。
+      /*  $('.btn').click(function(){
+        var radi = $('.radi').val();
+        // console.log(radi);
+        $('.rect').css('border-radius',radi);
+        $('.rect').html('圆角度：' + radi);
+      }); */
 
-
+      $(".btn").click(function () {
+        $(".rect").css("border-radius", function () {
+          var radi = $(".radi").val();
+          $(this).html("圆角度：" + radi);
+          return radi;
+        });
+      });
     </script>
   </body>
 </html>
