@@ -23,21 +23,28 @@
       // 编写代码，移动div元素，让鼠标不能指向该元素。
       var size = 80;
       $("#target").mouseover(function () {
-        var winWidth = $(window).width();
-        var winHeight = $(window).height();
+        var winWidth = $(window).width() - size;
+        var winHeight = $(window).height() - size;
         var div = $("#target");
         var divLeft = div.offset().left;
         var divTop = div.offset().top;
-        var ran = Math.random();
+        var ran = Math.random();  // 生产一个0-1的随机数
         if (ran > 0.5) {
           // 左右移动
- 
+          divLeft += size;
+          if(divLeft > winWidth){
+            divLeft = 8;
+          }
+
         } else {
           // 上下移动
- 
+          divTop += size;
+          if(divTop > winHeight){
+            divTop = 8;
+          }
         }
-        // console.log(winWidth, winHeight, divLeft, divTop);
-        
+        console.log(winWidth, winHeight, divLeft, divTop);
+        div.offset({left:divLeft,top:divTop});
       });
     </script>
   </body>
