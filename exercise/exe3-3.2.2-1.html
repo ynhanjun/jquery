@@ -27,12 +27,24 @@
     <!-- 从网上找的图片地址，右键单击图片再“复制图像链接”即可，但加载时会报X-Content-Type-Options错误，在Edge和chrome浏览器中不影响图片的显示。 -->
     <img
       id="img1"
-      src="https://nimg.ws.126.net/?url=http%3A%2F%2Fcms-bucket.ws.126.net%2F2022%2F0404%2Ffaa08f4bj00r9su680018c000go00b4c.jpg&thumbnail=660x2147483647&quality=80&type=jpg"
+      src="https://nimg.ws.126.net/?url=http%3A%2F%2Fcms-bucket.ws.126.net%2F2022%2F0407%2Fbac941f3j00r9y8ig003kc000b4008cc.jpg&thumbnail=660x2147483647&quality=80&type=jpg"
       alt=""
     />
     <script>
       $("#btn1").click(function () {
-   
+        // 一、修改背景颜色
+        // $('.div1').attr('background','green'); // 错误的写法
+        // 1 用原来学过的CSS方法
+        // $('.div1').css('background','green');
+        // 2 把“类”替换为新的类
+        // $('.div1').attr('class','div2');
+        // 3 增加一个元素内的CSS样式，和css()方法效果一样。
+        $('.div1').attr('style','background:blue;');
+
+        // 二、更换图片
+        // 原理是更换img元素的src属性的值。
+        $('#img1').attr('src','https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2022%2F0407%2F77251071j00r9y6e90040c000u000pwm.jpg&thumbnail=660x2147483647&quality=80&type=jpg')
+
       });
     </script>
   </body>
