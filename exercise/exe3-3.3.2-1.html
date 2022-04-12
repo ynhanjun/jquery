@@ -10,6 +10,7 @@
         width: 200px;
         height: 200px;
         border: 1px solid black;
+        background-color: rgb(255, 255, 255);
       }
     </style>
     <title>exe3-3.3.2-1.html</title>
@@ -26,7 +27,15 @@
     </div>
     <div id="output"></div>
     <script>
- 
+      $('#btn').click(function(){
+        var red   =  $('#red').val();
+        var green =  $('#green').val();
+        var blue  =  $('#blue').val();
+        var color = 'rgb(' + red + ',' + green + ',' + blue + ')';
+        // console.log(red,green,blue,color);
+        $('#output').css('background',color);
+      });
+
     </script>
   </body>
 </html>
