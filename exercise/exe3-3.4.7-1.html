@@ -29,7 +29,18 @@
       <input type="button" name="btn" id="btn" value="显示" />
     </div>
     <script type="text/javascript">
- 
+      $('#btn').click(function(){
+        var opacity = $('#t1').val();
+        if(opacity >= 0 && opacity <= 1){
+        // console.log(opacity);
+          $('#d2').css('opacity',opacity);
+        }else{
+          // 显示错误信息
+          // console.log('输入错误！');
+          var errMsg = '<p>输入错误!</p>';
+          $('#t1').after(errMsg);
+        }
+      });
     </script>
   </body>
 </html>
