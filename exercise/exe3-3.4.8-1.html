@@ -34,7 +34,19 @@
     </div>
     <div id="divR"></div>
     <script type="text/javascript">
- 
+      $('#toR').click(function(){
+        $('#divR').append($('#divL>p:first'));
+      });
+      $('#toL').click(function(){
+        $('#divL').append($('#divR>p:first'));
+      });
+      $('#toRA').click(function(){
+        $('#divR').append($('#divL>p'));
+      });
+      $('#toLA').click(function(){
+        $('#divL').append($('#divR>p'));
+      });
+      
     </script>
   </body>
 </html>

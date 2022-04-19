@@ -20,7 +20,6 @@
             price: "48",
           },
         ];
-        
       </script>
     </head>
     <body>
@@ -41,6 +40,20 @@
           </tr>
         </tbody>
       </table>
+      <script>
+        $("#j_btnGetData").click(function () {
+          var tbDataHtml = $("#j_tbData").html();
+          for (var i = 0; i < data.length; i++) {
+            tbDataHtml += "<tr>";
+            tbDataHtml += "<td>" + data[i].name + "</td>";
+            tbDataHtml += "<td>" + data[i].pages + "</td>";
+            tbDataHtml += "<td>" + data[i].price + "</td>";
+            tbDataHtml += "</tr>";
+          }
+          // console.log(tbDataHtml);
+          $("#j_tbData").html(tbDataHtml);
+        });
+      </script>
     </body>
   </html>
 </html>
