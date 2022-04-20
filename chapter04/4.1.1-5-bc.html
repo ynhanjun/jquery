@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <title>4.1.1-5-bc.html</title>
+  </head>
+  <body>
+    <form action="#" method="get">
+      <p>姓名：<input type="text" name="i_name" id="i_name" value="姓名" /></p>
+      <p>
+        性别：
+        <label for="i_man">男</label>
+        <input
+          type="radio"
+          name="i_sex"
+          id="i_man"
+          value="男"
+          checked="checked"
+        />
+        <label for="i_woman">女</label>
+        <input type="radio" name="i_sex" id="i_woman" value="女" />
+      </p>
+      <p>
+        简介：<br /><textarea name="i_abs" rows="5" cols="30">
+个人简介。</textarea
+        >
+      </p>
+      <p id="msg"></p>
+      <input type="submit" value="提交" />
+    </form>
+    <script type="text/javascript">
+      // select方法示例
+      $("form").select(function () {
+        $("#msg").html("内容被选中。");
+        window.getSelection().empty();
+        // 上面这一行是javaScript的代码，取消选择的文本。
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <title>4.1.3-1-bc.html</title>
+  </head>
+  <body>
+    <p id="con">被隐藏的内容</p>
+    <p id="btn">隐藏</p>
+    <script type="text/javascript">
+      $("#btn").mousedown(function () {
+        $("#con").slideToggle();
+        // slideToggle调整元素的高度，以“滑动”的方式隐藏或显示。
+        if ($("#btn").text() == "隐藏") {
+          $(this).text("显示");
+        } else {
+          $(this).text("隐藏");
+        } // mousedown 与 click 事件不同，mousedown 事件仅需要按键被按下，而不需要松开即可发生。
+      });
+    </script>
+  </body>
+</html>

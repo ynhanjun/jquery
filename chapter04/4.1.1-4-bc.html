@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <title>4.1.1-4-bc.html</title>
+  </head>
+  <body>
+    <form action="#" method="get">
+      <span id="msg">请输入姓名：</span>
+      <input type="text" id="name" name="name" value="张三" />
+      <input type="submit" value="提交" />
+    </form>
+    <script type="text/javascript">
+      // submit用法示例
+      $("form").submit(function () {
+        if ($("#name").val() == "张三") {
+          $("#msg").html("请修改姓名后再提交：");
+          return false; // 阻止提交表单
+        } else {
+          return true; // 允许提交
+        }
+      });
+    </script>
+  </body>
+</html>

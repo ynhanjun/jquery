@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <title>exe3-3.5-2.html</title>
-    <script>
-
-    </script>
+    <script></script>
   </head>
   <body>
     <table>
@@ -35,17 +33,18 @@
       <script>
         // 第1部分，选择“序号”时，不论底下的序号选择情况如何，
         //         可根据选择情况全部“勾选”或“取消”。
-        $('thead input').click(function(){
-          var chec = $(this).prop('checked');
+        $("thead input").click(function () {
+          var chec = $(this).prop("checked");
           console.log(chec);
-          $('tbody input').prop('checked',chec);
+          $("tbody input").prop("checked", chec);
         });
-
 
         // 第2部分，选择tbody中的序号时，可根据选择的数量和总数量比较，
         //         相同则“勾选序号”，不同则取消“序号”。
-
-
+        $("tbody input").click(function () {
+          var flag = $("tbody input:checked").length == $("tbody input").length;
+          $("thead input").prop("checked", flag);
+        });
       </script>
     </table>
   </body>

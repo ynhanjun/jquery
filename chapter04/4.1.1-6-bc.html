@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <title>4.1.1-6-bc.html</title>
+  </head>
+  <body>
+    <div id="i_msg" style="height: 1500px">这个div标签让窗口出现滚动条。</div>
+    <script type="text/javascript">
+        // scroll方法示例
+      $(window).scroll(function () {
+        $("#i_msg").append("<br>你滚动了窗口！");
+      });
+    </script>
+  </body>
+</html>
