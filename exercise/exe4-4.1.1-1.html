@@ -23,10 +23,23 @@
       var html = "";
       //  用keydown方法可获取在窗口中输入的按键。
       $(window).keydown(function (event) {
-        //   $(window).keypress(function (event) {
-        //   $(window).keyup(function (event) {
-        //   console.log(event);
-     
+        
+        // $(window).keypress(function (event) {
+        // keypress只能获取“可见”的字符。
+
+        // $(window).keyup(function (event) {
+        // 按键按下时不会触发。
+
+        // console.log(event);
+
+        html = $("#out").html();
+
+        html += "<tr>";
+        html += "<td>" + event.key + "</td>";
+        html += "<td>" + event.keyCode + "</td>";
+        html += "</tr>";
+
+        $("#out").html(html);
       });
     </script>
   </body>
