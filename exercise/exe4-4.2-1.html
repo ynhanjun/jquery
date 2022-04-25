@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+      .wrap {
+        width: 593px;
+        margin: 30px auto 0;
+        padding: 0 auto;
+        text-align: center;
+      }
+      img {
+        width: 593px;
+        height: 395px;
+      }
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #c0c0c0;
+        width: 300px;
+        margin: 0 auto;
+      }
+      th,td {
+        border: 1px solid #d0d0d0;
+        color: #404060;
+        padding: 10px;
+      }
+      th {
+        background-color: #09c;
+        font: bold 16px "Microsoft YaHei";
+        color: #fff;
+      }
+      td {
+        font: 14px "Microsoft YaHei";
+        text-align: center;
+      }
+      td a.del {
+        text-decoration: none;
+      }
+      a.del:hover {
+        text-decoration: underline;
+      }
+
+      tbody tr {
+        background-color: #f0f0f0;
+      }
+
+      tbody tr:hover {
+        cursor: pointer;
+        background-color: #fafafa;
+      }
+
+      .mask {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.15;
+        display: none;
+      }
+    </style>
+    <title>exe4-4.2-1.html</title>
+  </head>
+  <body>
+    <div id="wrap" class="wrap">
+      <h3>请用代码实现，单击“使用”后以显示的不透明度显示遮罩，单击遮罩后取消遮罩。</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>不透明度</td>
+                    <th>使用</td>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <td>0.15</td>
+                    <td><a href="javascrip:;" class="enable">使用</a></td>
+                </tr>
+                <tr>
+                    <td>0.2</td>
+                    <td><a href="javascrip:;" class="enable">使用</a></td>
+                </tr>
+                <tr>
+                    <td>0.3</td>
+                    <td><a href="javascrip:;" class="enable">使用</a></td>
+                </tr>
+                <tr>
+                    <td>0.5</td>
+                    <td><a href="javascrip:;" class="enable">使用</a></td>
+                </tr>
+                <tr>
+                    <td>0.75</td>
+                    <td><a href="javascrip:;" class="enable">使用</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="https://t7.baidu.com/it/u=2604797219,1573897854&fm=193&f=GIF">
+    </div>
+    <div id="j_mask" class="mask"></div>
+    <script type="text/javascript">
+ 
+    </script>
+  </body>
+</html>
