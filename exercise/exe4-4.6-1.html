@@ -21,7 +21,15 @@
     <button id="btn">显示盒子</button>
     <div class="box" id="box"></div>
     <script>
-
+      $('#btn').click(function(){
+        $('#box').show();
+      });
+      $(window).keydown(function(k){
+        // console.log(k.keyCode);
+        if(k.keyCode == 27){
+         $('#box').hide();
+        }
+      });
     </script>
   </body>
 </html>
