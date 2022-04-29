@@ -104,7 +104,15 @@
     </div>
     <div id="j_mask" class="mask"></div>
     <script type="text/javascript">
- 
+      $('#j_tb').on('click','.enable',function(){
+        var opacity = $(this).parent().siblings().eq(0).text();
+        console.log(opacity);
+        $('#j_mask').css('opacity',opacity);
+        $('#j_mask').css('display','block');
+      });
+      $('#j_mask').click(function(){
+        $(this).css('display','none');
+      });
     </script>
   </body>
 </html>
