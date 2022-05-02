@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <style></style>
+    <title>4.5-1-bc.html</title>
+  </head>
+  <body>
+    <div style="background-color: yellow" id="div1">
+      <p>点击按钮修改这个 div 元素的背景颜色。</p>
+      <button id="btn1">点我!</button>
+    </div>
+
+    <div style="background-color: yellow">
+      <p>点击按钮修改这个 div 元素的背景颜色。</p>
+      <button>点我!</button>
+    </div>
+    <script type="text/javascript">
+      $("#btn1").click(function () {
+        $("#div1").css("background", "pink");
+      });
+      // 传统方法，需要指定ID或是其它方式。
+      $("div").on("click", "button", function (event) {
+        $(event.delegateTarget).css("background-color", "pink");
+      });
+      // 不用指定ID，也可以判断出是那个按钮被单击，简化了代码。
+    </script>
+  </body>
+</html>
