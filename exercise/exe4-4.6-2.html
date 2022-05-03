@@ -27,7 +27,24 @@
             '编写可维护的JavaScript',
             "高性能JavaScript"
         ];
- 
+        $('#keyword').change(function(){
+          var temp = [];
+          var key = $(this).val().toLowerCase();
+          for(var i = 0; i < data.length ; i++){
+            if(data[i].toLowerCase().indexOf(key) != -1){
+              temp.push(data[i]);
+              // push()向数组添加新元素。
+            }
+          }
+          if(temp.length != 0){
+            $('#list').html('');
+            for(var i = 0; i < temp.length ; i++){
+              $('#list').append('<li>' + temp[i] + '</li>');
+            }
+          }else{
+            $('#list').html('<li>无</li>');
+          }
+        });
       });
     </script>
   </body>
