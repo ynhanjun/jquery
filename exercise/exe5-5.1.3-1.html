@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+        h3 {
+            text-align: center;
+        }
+        .box{
+            width: 980px;
+            display: block;
+            border: 1px solid black;
+            margin: 0 auto;
+            padding: 5px;
+        }
+        .lbox{
+            width: 180px;
+            display: block;
+            float: left;
+        }
+        .rbox{
+            width: 800px;
+            display: block;
+            float: left;
+        }
+        .sm{
+            width: 80px;
+            height: 60px;
+        }
+        .big{
+            width: 800px;
+            height: 600px;
+        }
+        /* 用于撑开box的高度 */
+        .clear{
+            clear:both;
+        }    
+    </style>
+    <title>exe5-5.1.3-1.html</title>
+  </head>
+  <body>
+        <h3>单击图片时实现图片切换</h3>
+        <div class="box">
+        <div class="lbox">
+            <img src="https://t7.baidu.com/it/u=2604797219,1573897854&fm=193&f=GIF" alt="" class="sm">
+            <img src="https://t7.baidu.com/it/u=2942499027,2479446682&fm=193&f=GIF" alt="" class="sm">
+            <img src="https://t7.baidu.com/it/u=3165657288,4248157545&fm=193&f=GIF" alt="" class="sm">
+            <img src="https://t7.baidu.com/it/u=3240224891,3518615655&fm=193&f=GIF" alt="" class="sm">
+            <img src="https://t7.baidu.com/it/u=2501476447,3743798074&fm=193&f=GIF" alt="" class="sm">
+            <img src="https://t7.baidu.com/it/u=2610975262,3538281461&fm=193&f=GIF" alt="" class="sm">
+            <img src="https://t7.baidu.com/it/u=3734967019,941734598&fm=193&f=GIF" alt="" class="sm">
+            <img src="https://t7.baidu.com/it/u=71977564,2288086088&fm=193&f=GIF" alt="" class="sm">
+        </div>
+        <div class="rbox">
+            <img src="https://t7.baidu.com/it/u=2604797219,1573897854&fm=193&f=GIF" alt="" class="big">
+            <img src="https://t7.baidu.com/it/u=2942499027,2479446682&fm=193&f=GIF" alt="" class="big">
+            <img src="https://t7.baidu.com/it/u=3165657288,4248157545&fm=193&f=GIF" alt="" class="big">
+            <img src="https://t7.baidu.com/it/u=3240224891,3518615655&fm=193&f=GIF" alt="" class="big">
+            <img src="https://t7.baidu.com/it/u=2501476447,3743798074&fm=193&f=GIF" alt="" class="big">
+            <img src="https://t7.baidu.com/it/u=2610975262,3538281461&fm=193&f=GIF" alt="" class="big">
+            <img src="https://t7.baidu.com/it/u=3734967019,941734598&fm=193&f=GIF" alt="" class="big">
+            <img src="https://t7.baidu.com/it/u=71977564,2288086088&fm=193&f=GIF" alt="" class="big">
+        </div>
+        <div class="clear"></div>
+        <script type="text/javascript">
+            $('.big:first').siblings().hide();
+
+        </script>
+  </body>
+</html>
