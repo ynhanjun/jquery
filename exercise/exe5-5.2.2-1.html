@@ -24,7 +24,20 @@
     </h3>
     <div id="div1">自定义动画</div>
     <script>
-
+      $("#div1").mouseenter(function () {
+        $(this).animate(
+          {
+            marginLeft: "50px",
+            marginTop: "50px",
+          },1500,function () {
+            $(this).animate(
+              {
+                marginLeft: "0px",
+                marginTop: "0px",
+              },1000);
+          }
+        );
+      });
     </script>
   </body>
 </html>
