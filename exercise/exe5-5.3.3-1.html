@@ -45,7 +45,19 @@
       </ul>
     </div>
     <script>
+      // 指向主菜单时会显示子菜单
+      $('ul').hover(function(){
+        $(this).find('li').stop().slideDown(500);
+      },function(){
+        $(this).find('li').stop().slideUp(500);
+      });
 
+      // 指向子菜单时子菜单背景会改变
+      $('li>a').mousemove(function(){
+        $(this).css('background','pink');
+      }).mouseleave(function(){
+        $(this).css('background','white');
+      });
     </script>
   </body>
 </html>

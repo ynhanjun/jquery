@@ -19,7 +19,22 @@
     <p>请使用jQuery控制一个高度为50px的盒子，使宽度在0~400px之间动态变化。</p>
     <div id="box"></div>
     <script>
- 
+      // 方法1
+      // setInterval(move,2000);
+
+      // function move(){
+      //   $('#box').animate({width:'400px'},1000,function(){
+      //     $(this).animate({width:'0px'},1000);
+      //   });
+      // }
+
+      // 方法2 函数的递归调用
+      function move(){
+        $('#box').animate({width:'400px'},1000,function(){
+          $(this).animate({width:'0px'},1000,move);
+        });
+      }
+      move();
     </script>
   </body>
 </html>

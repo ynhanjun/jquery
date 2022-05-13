@@ -20,7 +20,13 @@
     <p>请使用jQuery控制一个盒子中心位置不变而长度和宽度增加两倍。</p>
     <div id="box"></div>
     <script>
- 
+      $(document).click(function () {
+        $("#box").animate({
+           width: "+=200px",
+           height: "+=200px",
+           margin:'-=100px'
+          }, 1500);
+      });
     </script>
   </body>
 </html>
