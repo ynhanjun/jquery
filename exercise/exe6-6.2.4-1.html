@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+        div {
+            width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+    <title>exe6-6.2.4-1.html</title>
+</head>
+
+<body>
+    <h4>发送请求，利用返回的json代码编写一个IP地址查询页面。</h4>
+    <h4>通过http方式访问 <a href="http://101.43.232.196/exercise/exe6-6.2.4-1.html">本页面</a></h4>
+    <div>
+        <p>说明：本例子使用的是ip-api网站。</p>
+        <p>网址：<a href="http://ip-api.com/">http://ip-api.com/</a></p>
+    </div>
+    <div>
+        <p>请输入IP地址：
+            <input type="text" name="intIP" id="intIP" value="222.172.200.68" />
+        <table border="1">
+            <tr>
+                <th>IP</th>
+                <th>国家</th>
+                <th>城市</th>
+            </tr>
+        </table>
+        </p>
+    </div>
+    <script>
+        $(function () {
+            function disp() {
+
+            }
+            $("#intIP").change(function () {
+                disp();
+                $(this).select(); // 选中文本框中的内容，方便下次输入。
+            });
+            $("#intIP").trigger('change'); //触发文本框的change事件，显示第一条记录。
+        });
+    </script>
+</body>
+</html>
