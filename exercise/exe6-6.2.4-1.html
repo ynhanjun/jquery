@@ -40,7 +40,17 @@
     <script>
         $(function () {
             $("#btn").click(function () {
-
+                var ip = $('#intIP').val();
+                var url = 'http://ip-api.com/json/';
+                url += ip + "?lang=zh-CN";
+                $.getJSON(url,function(data){
+                    var html = "<tr>";
+                    html += "<td>" + ip + "</td>";
+                    html += "<td>" + data.country + "</td>";
+                    html += "<td>" + data.city + "</td>";
+                    html += "</tr>";
+                    $('table').append(html);
+                });
                 $('#intIP').select(); // 选中文本框中的内容，方便下次输入。
             });
         });
