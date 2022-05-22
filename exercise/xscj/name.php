@@ -2,7 +2,7 @@
 //读取参数
     $key = $_GET['key'];
 //创建连接
-    $dsn="mysql:dbname=xscj;host=101.43.232.196";
+    $dsn="mysql:dbname=xscj;host=hanjunedu.top";
     $db_user='readonly';
     $db_pass='123456';
     try{
