@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP</title>
+</head>
+<body>
+    <button onclick="btnClick()" >显示信息</button>
+    <span id="msg"></span>
+    <script>
+        function btnClick(){
+            var script = document.createElement('script');
+            script.src = 'https://hanjunedu.top/exercise/jsonp.php';
+            document.body.appendChild(script);   
+            /*
+            把script对象追加到body中，相当于开始发出请求。
+            等同于 script src="https://hanjunedu.top/exercise/jsonp.php" /script
+            */
+        };
+        function test(data){
+            document.getElementById('msg').innerHTML = data['msg'];
+        };
+    </script>
+</body>
+</html>
