@@ -33,8 +33,11 @@
           if (val) {
             val = "key=" + val;
             $.getJSON("name.php", val, function (data) {
-              console.log(data);
-
+              // console.log(data);
+              for(var i in data){
+                // console.log(data[i].name);
+                $("#disp").append("<span>" + data[i].name + "</span><br>");
+              }
             });
           } else {
             $("#disp").text("");
