@@ -1,7 +1,6 @@
 drop database if exists `xscj`;
 CREATE DATABASE `xscj` ;
 USE `xscj`;
-DROP TABLE IF EXISTS `xs`;
 CREATE TABLE `xs` (
   `学号` char(6) NOT NULL,
   `姓名` char(8) NOT NULL,
